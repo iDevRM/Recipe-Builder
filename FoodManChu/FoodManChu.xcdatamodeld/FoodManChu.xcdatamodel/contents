@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Categories" representedClassName="Categories" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="recipe" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipe" inverseName="category" inverseEntity="Recipe"/>
+    </entity>
+    <entity name="Ingredients" representedClassName="Ingredients" syncable="YES">
+        <attribute name="everyIngredient" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <relationship name="recipe" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipe" inverseName="ingredients" inverseEntity="Recipe"/>
+    </entity>
+    <entity name="Recipe" representedClassName="Recipe" syncable="YES">
+        <attribute name="descript" optional="YES" attributeType="String"/>
+        <attribute name="instructions" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="prepTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="category" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Categories" inverseName="recipe" inverseEntity="Categories"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredients" inverseName="recipe" inverseEntity="Ingredients"/>
+    </entity>
+    <elements>
+        <element name="Categories" positionX="-380.441650390625" positionY="-326.1947021484375" width="128" height="73"/>
+        <element name="Recipe" positionX="-54" positionY="-9" width="128" height="133"/>
+        <element name="Ingredients" positionX="328.1693725585938" positionY="-374.2258911132812" width="128" height="73"/>
+    </elements>
 </model>
