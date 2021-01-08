@@ -144,13 +144,75 @@
                                 <rect key="frame" x="0.0" y="331" width="414" height="477"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="130" id="fIP-TT-ClM" customClass="SearchTableViewCell" customModule="FoodManChu" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="130" id="fIP-TT-ClM" customClass="SearchTableViewCell" customModule="FoodManChu" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fIP-TT-ClM" id="oed-Jq-zlE">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtd-xN-UKV">
+                                                    <rect key="frame" x="25" y="25" width="364" height="80"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Instant-Pot-Spaghetti-Recipe-11-of-4-1024x681" translatesAutoresizingMaskIntoConstraints="NO" id="uHl-90-Pqn">
+                                                            <rect key="frame" x="16" y="-20" width="60" height="60"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="60" id="jZZ-gH-cna"/>
+                                                                <constraint firstAttribute="width" constant="60" id="vZf-dN-ffk"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="MpU-Ex-Cwc">
+                                                            <rect key="frame" x="84" y="5" width="260" height="35"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Spaghetti " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVP-je-eRG">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="260" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="15 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qm9-Wp-74J">
+                                                                    <rect key="frame" x="0.0" y="22.5" width="260" height="12.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An easy, one pot pasta recipe that cooks in the Instant Pot!" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="MRX-eg-Qhh">
+                                                            <rect key="frame" x="20" y="48" width="324" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="MRX-eg-Qhh" secondAttribute="trailing" constant="20" id="548-TJ-TB9"/>
+                                                        <constraint firstAttribute="trailing" secondItem="MpU-Ex-Cwc" secondAttribute="trailing" constant="20" id="6Vb-z3-nG9"/>
+                                                        <constraint firstItem="uHl-90-Pqn" firstAttribute="top" secondItem="gtd-xN-UKV" secondAttribute="top" constant="-20" id="7fA-6W-a8h"/>
+                                                        <constraint firstItem="MpU-Ex-Cwc" firstAttribute="bottom" secondItem="uHl-90-Pqn" secondAttribute="bottom" id="JvH-Ph-82U"/>
+                                                        <constraint firstAttribute="bottom" secondItem="MRX-eg-Qhh" secondAttribute="bottom" constant="8" id="NQW-PF-1dE"/>
+                                                        <constraint firstItem="MRX-eg-Qhh" firstAttribute="top" secondItem="uHl-90-Pqn" secondAttribute="bottom" constant="8" id="Skc-d7-Qf0"/>
+                                                        <constraint firstItem="MpU-Ex-Cwc" firstAttribute="top" secondItem="gtd-xN-UKV" secondAttribute="top" constant="5" id="SuN-AJ-Xrf"/>
+                                                        <constraint firstItem="uHl-90-Pqn" firstAttribute="leading" secondItem="gtd-xN-UKV" secondAttribute="leading" constant="16" id="nTh-nr-M8c"/>
+                                                        <constraint firstItem="MRX-eg-Qhh" firstAttribute="leading" secondItem="gtd-xN-UKV" secondAttribute="leading" constant="20" id="qVO-9o-ESb"/>
+                                                        <constraint firstItem="MpU-Ex-Cwc" firstAttribute="leading" secondItem="uHl-90-Pqn" secondAttribute="trailing" constant="8" id="zHM-AV-0Ta"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="gtd-xN-UKV" secondAttribute="trailing" constant="25" id="3eL-xI-0Ii"/>
+                                                <constraint firstItem="gtd-xN-UKV" firstAttribute="leading" secondItem="oed-Jq-zlE" secondAttribute="leading" constant="25" id="Dsx-re-rYM"/>
+                                                <constraint firstAttribute="bottom" secondItem="gtd-xN-UKV" secondAttribute="bottom" constant="25" id="pj5-Xn-ihQ"/>
+                                                <constraint firstItem="gtd-xN-UKV" firstAttribute="top" secondItem="oed-Jq-zlE" secondAttribute="top" constant="25" id="vI5-ts-bio"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bottomLabel" destination="MRX-eg-Qhh" id="Jg5-T9-Bes"/>
+                                            <outlet property="middleLabel" destination="qm9-Wp-74J" id="bNu-YE-Yc6"/>
+                                            <outlet property="thumbnail" destination="uHl-90-Pqn" id="ksj-vC-rcV"/>
+                                            <outlet property="topLabel" destination="dVP-je-eRG" id="dHQ-vW-l2k"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -196,6 +258,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Instant-Pot-Spaghetti-Recipe-11-of-4-1024x681" width="1024" height="681"/>
         <image name="calum-lewis-vA1L1jRTM70-unsplash" width="640" height="960"/>
         <image name="ingredientsBackground" width="640" height="960"/>
         <systemColor name="systemBackgroundColor">
