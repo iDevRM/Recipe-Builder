@@ -212,6 +212,7 @@
                                             <outlet property="middleLabel" destination="qm9-Wp-74J" id="bNu-YE-Yc6"/>
                                             <outlet property="thumbnail" destination="uHl-90-Pqn" id="ksj-vC-rcV"/>
                                             <outlet property="topLabel" destination="dVP-je-eRG" id="dHQ-vW-l2k"/>
+                                            <outlet property="view" destination="gtd-xN-UKV" id="wzA-KG-Th3"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

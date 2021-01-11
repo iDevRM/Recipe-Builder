@@ -13,9 +13,15 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var topLabel:    UILabel!
     @IBOutlet weak var middleLabel: UILabel!
     @IBOutlet weak var bottomLabel: UILabel!
+    @IBOutlet weak var view:        UIView!
 
-    func configureCell(_ recipe: Recipe) {
-        self.thumbnail = 
+    func configureCell(_ recipe: Recipe ) {
+        thumbnail.image  = recipe.image as? UIImage ?? UIImage(named: "Instant-Pot-Spaghetti-Recipe-11-of-4-1024x681")
+        thumbnail.layer.cornerRadius = 15
+        view.layer.cornerRadius = 15
+        topLabel.text    = recipe.name
+        middleLabel.text = String(recipe.prepTime)
+        bottomLabel.text = recipe.descript
     }
 
 }

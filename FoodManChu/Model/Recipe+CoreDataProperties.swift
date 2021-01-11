@@ -2,7 +2,7 @@
 //  Recipe+CoreDataProperties.swift
 //  FoodManChu
 //
-//  Created by Ricardo Martinez on 1/7/21.
+//  Created by Ricardo Martinez on 1/11/21.
 //
 //
 
@@ -16,29 +16,13 @@ extension Recipe {
         return NSFetchRequest<Recipe>(entityName: "Recipe")
     }
 
-    @NSManaged public var name: String?
     @NSManaged public var descript: String?
+    @NSManaged public var image: NSObject?
     @NSManaged public var instructions: String?
+    @NSManaged public var name: String?
     @NSManaged public var prepTime: Double
-    @NSManaged public var ingredients: NSSet?
     @NSManaged public var category: NSSet?
-
-}
-
-// MARK: Generated accessors for ingredients
-extension Recipe {
-
-    @objc(addIngredientsObject:)
-    @NSManaged public func addToIngredients(_ value: Ingredients)
-
-    @objc(removeIngredientsObject:)
-    @NSManaged public func removeFromIngredients(_ value: Ingredients)
-
-    @objc(addIngredients:)
-    @NSManaged public func addToIngredients(_ values: NSSet)
-
-    @objc(removeIngredients:)
-    @NSManaged public func removeFromIngredients(_ values: NSSet)
+    @NSManaged public var ingredients: NSSet?
 
 }
 
@@ -56,6 +40,23 @@ extension Recipe {
 
     @objc(removeCategory:)
     @NSManaged public func removeFromCategory(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for ingredients
+extension Recipe {
+
+    @objc(addIngredientsObject:)
+    @NSManaged public func addToIngredients(_ value: Ingredients)
+
+    @objc(removeIngredientsObject:)
+    @NSManaged public func removeFromIngredients(_ value: Ingredients)
+
+    @objc(addIngredients:)
+    @NSManaged public func addToIngredients(_ values: NSSet)
+
+    @objc(removeIngredients:)
+    @NSManaged public func removeFromIngredients(_ values: NSSet)
 
 }
 

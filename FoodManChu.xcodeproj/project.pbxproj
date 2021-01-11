@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D04333D25ACB0C50001796D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D04333C25ACB0C50001796D /* Constants.swift */; };
+		1D04334125ACFACA0001796D /* Categories+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D04334025ACFACA0001796D /* Categories+CoreDataProperties.swift */; };
 		1D8CA38025A7968700DBCE74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8CA37F25A7968700DBCE74 /* AppDelegate.swift */; };
 		1D8CA38225A7968700DBCE74 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8CA38125A7968700DBCE74 /* SceneDelegate.swift */; };
 		1D8CA38725A7968700DBCE74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D8CA38525A7968700DBCE74 /* Main.storyboard */; };
@@ -14,17 +16,18 @@
 		1D8CA38C25A7968800DBCE74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D8CA38B25A7968800DBCE74 /* Assets.xcassets */; };
 		1D8CA38F25A7968800DBCE74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D8CA38D25A7968800DBCE74 /* LaunchScreen.storyboard */; };
 		1D8CA3B025A7AEA700DBCE74 /* Categories+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8CA3AA25A7AEA700DBCE74 /* Categories+CoreDataClass.swift */; };
-		1D8CA3B125A7AEA700DBCE74 /* Categories+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8CA3AB25A7AEA700DBCE74 /* Categories+CoreDataProperties.swift */; };
 		1D8CA3B225A7AEA700DBCE74 /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8CA3AC25A7AEA700DBCE74 /* Recipe+CoreDataClass.swift */; };
-		1D8CA3B325A7AEA700DBCE74 /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8CA3AD25A7AEA700DBCE74 /* Recipe+CoreDataProperties.swift */; };
 		1D8CA3B425A7AEA700DBCE74 /* Ingredients+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8CA3AE25A7AEA700DBCE74 /* Ingredients+CoreDataClass.swift */; };
 		1D8CA3B525A7AEA700DBCE74 /* Ingredients+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8CA3AF25A7AEA700DBCE74 /* Ingredients+CoreDataProperties.swift */; };
 		1D8CA3BA25A7B5A200DBCE74 /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8CA3B925A7B5A200DBCE74 /* InitialVC.swift */; };
 		1DE431B325A8FBA2002C6A2D /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE431B225A8FBA2002C6A2D /* SearchVC.swift */; };
 		1DE431BA25A8FD43002C6A2D /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE431B925A8FD43002C6A2D /* SearchTableViewCell.swift */; };
+		1DFC65EC25AD01640047493F /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC65EB25AD01640047493F /* Recipe+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D04333C25ACB0C50001796D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1D04334025ACFACA0001796D /* Categories+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Categories+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1D8CA37C25A7968700DBCE74 /* FoodManChu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodManChu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D8CA37F25A7968700DBCE74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D8CA38125A7968700DBCE74 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,14 +37,13 @@
 		1D8CA38E25A7968800DBCE74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D8CA39025A7968800DBCE74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D8CA3AA25A7AEA700DBCE74 /* Categories+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Categories+CoreDataClass.swift"; sourceTree = "<group>"; };
-		1D8CA3AB25A7AEA700DBCE74 /* Categories+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Categories+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1D8CA3AC25A7AEA700DBCE74 /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = "<group>"; };
-		1D8CA3AD25A7AEA700DBCE74 /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1D8CA3AE25A7AEA700DBCE74 /* Ingredients+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredients+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1D8CA3AF25A7AEA700DBCE74 /* Ingredients+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredients+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1D8CA3B925A7B5A200DBCE74 /* InitialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialVC.swift; sourceTree = "<group>"; };
 		1DE431B225A8FBA2002C6A2D /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		1DE431B925A8FD43002C6A2D /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		1DFC65EB25AD01640047493F /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D04333B25ACB0A10001796D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1D04333C25ACB0C50001796D /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		1D8CA37325A7968700DBCE74 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +89,7 @@
 			children = (
 				1D8CA37F25A7968700DBCE74 /* AppDelegate.swift */,
 				1D8CA38125A7968700DBCE74 /* SceneDelegate.swift */,
+				1D04333B25ACB0A10001796D /* Utilities */,
 				1D8CA39925A7AD7300DBCE74 /* Model */,
 				1D8CA39825A7AD6B00DBCE74 /* View */,
 				1D8CA39725A7AD5F00DBCE74 /* Controller */,
@@ -111,8 +122,8 @@
 		1D8CA39925A7AD7300DBCE74 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1D8CA3AB25A7AEA700DBCE74 /* Categories+CoreDataProperties.swift */,
-				1D8CA3AD25A7AEA700DBCE74 /* Recipe+CoreDataProperties.swift */,
+				1D04334025ACFACA0001796D /* Categories+CoreDataProperties.swift */,
+				1DFC65EB25AD01640047493F /* Recipe+CoreDataProperties.swift */,
 				1D8CA3AF25A7AEA700DBCE74 /* Ingredients+CoreDataProperties.swift */,
 			);
 			path = Model;
@@ -189,13 +200,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D8CA3BA25A7B5A200DBCE74 /* InitialVC.swift in Sources */,
+				1D04334125ACFACA0001796D /* Categories+CoreDataProperties.swift in Sources */,
 				1DE431B325A8FBA2002C6A2D /* SearchVC.swift in Sources */,
 				1D8CA3B025A7AEA700DBCE74 /* Categories+CoreDataClass.swift in Sources */,
-				1D8CA3B125A7AEA700DBCE74 /* Categories+CoreDataProperties.swift in Sources */,
 				1D8CA3B225A7AEA700DBCE74 /* Recipe+CoreDataClass.swift in Sources */,
 				1D8CA38025A7968700DBCE74 /* AppDelegate.swift in Sources */,
-				1D8CA3B325A7AEA700DBCE74 /* Recipe+CoreDataProperties.swift in Sources */,
 				1D8CA3B425A7AEA700DBCE74 /* Ingredients+CoreDataClass.swift in Sources */,
+				1DFC65EC25AD01640047493F /* Recipe+CoreDataProperties.swift in Sources */,
+				1D04333D25ACB0C50001796D /* Constants.swift in Sources */,
 				1D8CA38225A7968700DBCE74 /* SceneDelegate.swift in Sources */,
 				1DE431BA25A8FD43002C6A2D /* SearchTableViewCell.swift in Sources */,
 				1D8CA3B525A7AEA700DBCE74 /* Ingredients+CoreDataProperties.swift in Sources */,

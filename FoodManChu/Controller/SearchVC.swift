@@ -12,6 +12,8 @@ class SearchVC: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
+    var controller: NSFetchedResultsController<Recipe>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,7 @@ class SearchVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
+        
         
     }
 
@@ -32,13 +35,21 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseId, for: indexPath) as? SearchTableViewCell {
+            configureCell(cell, indexPath: indexPath)
+            tableView.reloadData()
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 130
     }
     
-    
+    func configureCell(_ cell: SearchTableViewCell, indexPath: IndexPath) {
+        let item = controller.object(at: indexPath)
+        cell.configureCell(item)
+    }
     
 }
