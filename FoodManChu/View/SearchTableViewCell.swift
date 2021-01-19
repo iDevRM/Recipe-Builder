@@ -20,7 +20,7 @@ class SearchTableViewCell: UITableViewCell {
         thumbnail.layer.cornerRadius = 15
         view.layer.cornerRadius = 15
         topLabel.text    = recipe.name
-        middleLabel.text = String(recipe.prepTime)
+        middleLabel.text = "\(String(format: "%0.f", recipe.prepTime)) min"
         bottomLabel.text = recipe.descript
     }
 

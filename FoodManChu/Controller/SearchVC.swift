@@ -8,21 +8,23 @@
 import UIKit
 import CoreData
 
-class SearchVC: UIViewController {
+class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    var controller: NSFetchedResultsController<Recipe>!
+    var recipeArray = [Recipe]()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadRecipes()
         
         tableView.delegate = self
         tableView.dataSource = self
-
         
         
+        print(recipeArray.count)
     }
 
 }
@@ -31,13 +33,12 @@ class SearchVC: UIViewController {
 
 extension SearchVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return recipeArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseId, for: indexPath) as? SearchTableViewCell {
-            configureCell(cell, indexPath: indexPath)
-            tableView.reloadData()
+            cell.configureCell(recipeArray[indexPath.row])
             return cell
         }
         return UITableViewCell()
@@ -47,9 +48,39 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
         return 130
     }
     
-    func configureCell(_ cell: SearchTableViewCell, indexPath: IndexPath) {
-        let item = controller.object(at: indexPath)
-        cell.configureCell(item)
+}
+
+//MARK: - Core Data C.R.U.D functions
+extension SearchVC {
+    
+    func addNewRecipe() {
+        let newItem = Recipe(context: Constants.context)
+        newItem.name = "Mealoaf"
+        newItem.descript = "Delicious meatloaf, said no one ever."
+        newItem.instructions = "Just cook it idiot."
+        newItem.prepTime = 30
+        
+        saveItems()
+    }
+    
+    func saveItems() {
+        
+        do {
+            try Constants.context.save()
+        } catch {
+            print("Error saving context: \(error)")
+        }
+        self.tableView.reloadData()
+    }
+    
+    func loadRecipes() {
+        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        do {
+            recipeArray = try Constants.context.fetch(request)
+        } catch {
+            print("Error fetching data from context: \(error)")
+        }
+        tableView.reloadData()
     }
     
 }

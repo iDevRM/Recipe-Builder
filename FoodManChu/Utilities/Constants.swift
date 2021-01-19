@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 enum Constants {
-    static let ad = UIApplication.shared.delegate as! AppDelegate
-    static let context = ad.persistentContainer.viewContext
+    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     static let cellReuseId = "RecipeCell"
 }
