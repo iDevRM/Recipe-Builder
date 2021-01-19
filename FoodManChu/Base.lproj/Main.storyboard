@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XbG-Aw-0jv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LJH-PG-bcS">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--SearchVC-->
+        <!--Recipe Search-->
         <scene sceneID="QZ9-42-z5C">
             <objects>
                 <viewController id="XbG-Aw-0jv" customClass="SearchVC" customModule="FoodManChu" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,12 +22,41 @@
                                     <constraint firstAttribute="width" secondItem="2d9-py-6Qy" secondAttribute="height" multiplier="15:12" id="3l5-Cd-5Oe"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Aqz-yq-MqO">
-                                <rect key="frame" x="0.0" y="331" width="414" height="531"/>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="cFF-0V-CHB">
+                                <rect key="frame" x="0.0" y="209" width="414" height="56"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.77209038134442243" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Aqz-yq-MqO">
+                                <rect key="frame" x="0.0" y="265" width="414" height="597"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="U8s-c9-dD4">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="Name"/>
+                                        <segment title="Description"/>
+                                        <segment title="Ingredients"/>
+                                        <segment title="Time"/>
+                                        <segment title="Category"/>
+                                    </segments>
+                                    <color key="selectedSegmentTintColor" red="0.87395084265506628" green="0.3876699057325293" blue="0.059920381752724919" alpha="0.70338571308464404" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <connections>
+                                        <action selector="segmentControlTapped:" destination="XbG-Aw-0jv" eventType="valueChanged" id="yHX-dg-MOx"/>
+                                    </connections>
+                                </segmentedControl>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="130" id="fIP-TT-ClM" customClass="SearchTableViewCell" customModule="FoodManChu" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="130"/>
+                                        <rect key="frame" x="0.0" y="60" width="414" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fIP-TT-ClM" id="oed-Jq-zlE">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
@@ -67,7 +96,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="MRX-eg-Qhh" secondAttribute="trailing" constant="20" id="548-TJ-TB9"/>
                                                         <constraint firstAttribute="trailing" secondItem="MpU-Ex-Cwc" secondAttribute="trailing" constant="20" id="6Vb-z3-nG9"/>
@@ -99,45 +128,51 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="cFF-0V-CHB">
-                                <rect key="frame" x="0.0" y="270" width="414" height="56"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.77209038134442243" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0rU-Ux-53p"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Aqz-yq-MqO" firstAttribute="top" secondItem="cFF-0V-CHB" secondAttribute="bottom" id="310-ir-Q30"/>
                             <constraint firstItem="2d9-py-6Qy" firstAttribute="top" secondItem="oar-8W-nsk" secondAttribute="top" id="4CP-WH-N6H"/>
                             <constraint firstItem="2d9-py-6Qy" firstAttribute="leading" secondItem="0rU-Ux-53p" secondAttribute="leading" id="DdB-IG-0GK"/>
-                            <constraint firstItem="Aqz-yq-MqO" firstAttribute="top" secondItem="cFF-0V-CHB" secondAttribute="bottom" constant="5" id="HGd-Rw-kk2"/>
-                            <constraint firstItem="0rU-Ux-53p" firstAttribute="trailing" secondItem="Aqz-yq-MqO" secondAttribute="trailing" id="Hvu-Rt-wNG"/>
-                            <constraint firstItem="cFF-0V-CHB" firstAttribute="leading" secondItem="0rU-Ux-53p" secondAttribute="leading" id="So0-Bh-Mnm"/>
+                            <constraint firstItem="Aqz-yq-MqO" firstAttribute="bottom" secondItem="0rU-Ux-53p" secondAttribute="bottom" id="IiQ-XW-png"/>
+                            <constraint firstItem="cFF-0V-CHB" firstAttribute="top" secondItem="0rU-Ux-53p" secondAttribute="top" constant="121" id="OHu-Ll-KiK"/>
                             <constraint firstItem="0rU-Ux-53p" firstAttribute="trailing" secondItem="2d9-py-6Qy" secondAttribute="trailing" id="aGV-vJ-ufQ"/>
-                            <constraint firstItem="cFF-0V-CHB" firstAttribute="trailing" secondItem="0rU-Ux-53p" secondAttribute="trailing" id="or4-5O-sdi"/>
-                            <constraint firstItem="0rU-Ux-53p" firstAttribute="bottom" secondItem="Aqz-yq-MqO" secondAttribute="bottom" id="tHp-J3-nKs"/>
-                            <constraint firstItem="Aqz-yq-MqO" firstAttribute="top" secondItem="2d9-py-6Qy" secondAttribute="bottom" id="ujv-6Y-JK6"/>
-                            <constraint firstItem="Aqz-yq-MqO" firstAttribute="leading" secondItem="0rU-Ux-53p" secondAttribute="leading" id="xOd-Oj-1Mw"/>
+                            <constraint firstItem="cFF-0V-CHB" firstAttribute="trailing" secondItem="0rU-Ux-53p" secondAttribute="trailing" id="bvs-Bo-bXI"/>
+                            <constraint firstItem="Aqz-yq-MqO" firstAttribute="trailing" secondItem="0rU-Ux-53p" secondAttribute="trailing" id="e2K-J7-ksg"/>
+                            <constraint firstItem="cFF-0V-CHB" firstAttribute="leading" secondItem="0rU-Ux-53p" secondAttribute="leading" id="eil-lu-bb8"/>
+                            <constraint firstItem="Aqz-yq-MqO" firstAttribute="leading" secondItem="0rU-Ux-53p" secondAttribute="leading" id="fBR-MW-gBh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="qAk-2B-RJL"/>
+                    <navigationItem key="navigationItem" title="Recipe Search" id="qAk-2B-RJL"/>
                     <connections>
                         <outlet property="searchBar" destination="cFF-0V-CHB" id="AyB-He-CNT"/>
+                        <outlet property="segmentControl" destination="U8s-c9-dD4" id="gaV-Ec-SpV"/>
                         <outlet property="tableView" destination="Aqz-yq-MqO" id="oSM-C7-2sT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rq4-1h-oYh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1221.7391304347827" y="75.669642857142847"/>
+            <point key="canvasLocation" x="1463.768115942029" y="48.883928571428569"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="moC-Zd-Bnh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LJH-PG-bcS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="W52-qi-Bhg">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XbG-Aw-0jv" kind="relationship" relationship="rootViewController" id="DYO-6x-VmN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e2l-iU-Zgs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="553.62318840579712" y="48.883928571428569"/>
         </scene>
     </scenes>
     <resources>
