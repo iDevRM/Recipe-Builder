@@ -171,7 +171,7 @@
             </objects>
             <point key="canvasLocation" x="1478.2608695652175" y="48.883928571428569"/>
         </scene>
-        <!--AddVC-->
+        <!--Add New Recipe-->
         <scene sceneID="0gc-uD-BWl">
             <objects>
                 <viewController id="0w4-9m-bne" customClass="AddVC" customModule="FoodManChu" customModuleProvider="target" sceneMemberID="viewController">
@@ -187,8 +187,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rwD-dn-h0Q">
-                                <rect key="frame" x="153" y="160" width="232" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Minutes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ine-ov-DET">
+                                <rect key="frame" x="153" y="221" width="79" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -205,8 +205,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Minutes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ine-ov-DET">
-                                <rect key="frame" x="153" y="221" width="79" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rwD-dn-h0Q">
+                                <rect key="frame" x="153" y="166" width="232" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -221,7 +221,7 @@
                             <constraint firstItem="xCQ-1j-Slv" firstAttribute="leading" secondItem="Vov-ju-QKy" secondAttribute="leading" id="uZZ-Rk-ytV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="XbZ-yh-SDA"/>
+                    <navigationItem key="navigationItem" title="Add New Recipe" id="XbZ-yh-SDA"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Yi-g3-hzu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
