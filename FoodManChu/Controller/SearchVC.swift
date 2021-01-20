@@ -10,21 +10,22 @@ import CoreData
 
 class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
     
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar     : UISearchBar!
+    @IBOutlet weak var tableView     : UITableView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
-    var recipeArray = [Recipe]()
-    var ingredients = Ingredients()
+    var recipeArray  = [Recipe]()
+    var ingredients  = Ingredients()
+    var searchFilter = "name"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadRecipes()
                 
-        tableView.delegate = self
+        tableView.delegate   = self
         tableView.dataSource = self
-        searchBar.delegate = self
+        searchBar.delegate   = self
         
     }
     
@@ -33,15 +34,15 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
         
         switch sender.selectedSegmentIndex {
         case 0:
-            print("new phone who dis")
+            searchFilter = SearchFilters.searchByName
         case 1:
-            print("new phone who dis")
+            searchFilter = SearchFilters.searchByDescription
         case 2:
-            print("new phone who dis")
+            searchFilter = SearchFilters.searchByIngredients
         case 3:
-            print("new phone who dis")
+            searchFilter = SearchFilters.searchByTime
         case 4:
-            print("new phone who dis")
+            searchFilter = SearchFilters.searchByCategory
         default:
             break
         }
@@ -69,17 +70,31 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
         return 130
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Constants.detailSegue, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destVC = segue.destination as? DetailVC {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                destVC.selectedRecipe = recipeArray[indexPath.row]
+            }
+        }
+    }
 }
+    
+
 
 //MARK: - Core Data Manipulation Methods
 extension SearchVC {
     
     func addNewRecipe() {
-        let newItem = Recipe(context: Constants.context)
-        newItem.name = "Chicken Parmasean"
-        newItem.descript = "Crispy and tender chicken with hot marinara sauce and fresh parmasean."
+        let newItem          = Recipe(context: Constants.context)
+        newItem.name         = "Chicken Parmasean"
+        newItem.descript     = "Crispy and tender chicken with hot marinara sauce and fresh parmasean."
         newItem.instructions = "Its amazing just try it"
-        newItem.prepTime = 35
+        newItem.prepTime     = 35
       
         
         saveItems()
@@ -118,9 +133,10 @@ extension SearchVC {
 extension SearchVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
-
-        let predicate = NSPredicate(format: "descript CONTAINS[cd] %@", searchBar.text!)
+        
+        let predicate = NSPredicate(format: "\(searchFilter) CONTAINS[cd] %@", searchBar.text!)
 
         request.predicate = predicate
 
@@ -143,5 +159,7 @@ extension SearchVC: UISearchBarDelegate {
             
         }
     }
+    
+    
     
 }
