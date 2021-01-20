@@ -24,6 +24,7 @@
 		1DFC65EC25AD01640047493F /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC65EB25AD01640047493F /* Recipe+CoreDataProperties.swift */; };
 		1DFF35FF25B8A43A005E6311 /* SearchFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFF35FE25B8A43A005E6311 /* SearchFilters.swift */; };
 		1DFF360225B8BC5B005E6311 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFF360125B8BC5B005E6311 /* DetailVC.swift */; };
+		1DFF360525B8D2FA005E6311 /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFF360425B8D2FA005E6311 /* AddVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		1DFC65EB25AD01640047493F /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1DFF35FE25B8A43A005E6311 /* SearchFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilters.swift; sourceTree = "<group>"; };
 		1DFF360125B8BC5B005E6311 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		1DFF360425B8D2FA005E6311 /* AddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				1DE431B225A8FBA2002C6A2D /* SearchVC.swift */,
 				1DFF360125B8BC5B005E6311 /* DetailVC.swift */,
+				1DFF360425B8D2FA005E6311 /* AddVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				1D8CA3B425A7AEA700DBCE74 /* Ingredients+CoreDataClass.swift in Sources */,
 				1DFC65EC25AD01640047493F /* Recipe+CoreDataProperties.swift in Sources */,
 				1D04333D25ACB0C50001796D /* Constants.swift in Sources */,
+				1DFF360525B8D2FA005E6311 /* AddVC.swift in Sources */,
 				1D8CA38225A7968700DBCE74 /* SceneDelegate.swift in Sources */,
 				1DE431BA25A8FD43002C6A2D /* SearchTableViewCell.swift in Sources */,
 				1D8CA3B525A7AEA700DBCE74 /* Ingredients+CoreDataProperties.swift in Sources */,
