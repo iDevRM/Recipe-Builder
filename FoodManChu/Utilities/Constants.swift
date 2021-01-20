@@ -12,4 +12,5 @@ enum Constants {
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     static let cellReuseId = "RecipeCell"
     static let detailSegue = "DetailSegue"
+    static let addSegue = "AddSegue"
 }

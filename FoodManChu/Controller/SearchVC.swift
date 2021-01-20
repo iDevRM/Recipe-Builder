@@ -13,6 +13,7 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var searchBar     : UISearchBar!
     @IBOutlet weak var tableView     : UITableView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
     var recipeArray  = [Recipe]()
     var ingredients  = Ingredients()
@@ -48,7 +49,10 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
         }
     }
     
-
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: Constants.addSegue, sender: self)
+    }
+    
 }
 
 //MARK: - TableView Delegate and DataSource
@@ -77,10 +81,12 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destVC = segue.destination as? DetailVC {
+            print("detailVC")
             if let indexPath = tableView.indexPathForSelectedRow {
                 destVC.selectedRecipe = recipeArray[indexPath.row]
             }
         }
+        
     }
 }
     

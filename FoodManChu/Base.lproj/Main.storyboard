@@ -121,7 +121,7 @@
                                 <rect key="frame" x="0.0" y="317" width="414" height="32"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
-                                    <segment title="First"/>
+                                    <segment title="Name"/>
                                     <segment title="Description"/>
                                     <segment title="Ingredients"/>
                                     <segment title="Time"/>
@@ -153,9 +153,14 @@
                     <navigationItem key="navigationItem" title="Recipe Search" id="qAk-2B-RJL">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="0Mw-Gn-YpI">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addButtonTapped:" destination="XbG-Aw-0jv" id="bJY-8b-exx"/>
+                                <segue destination="0w4-9m-bne" kind="show" identifier="AddSegue" id="1Vw-Uu-tEu"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="0Mw-Gn-YpI" id="txK-KM-Pad"/>
                         <outlet property="searchBar" destination="cFF-0V-CHB" id="AyB-He-CNT"/>
                         <outlet property="segmentControl" destination="nyV-Tx-Vvb" id="bb0-sB-nUh"/>
                         <outlet property="tableView" destination="Aqz-yq-MqO" id="oSM-C7-2sT"/>
@@ -165,6 +170,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rq4-1h-oYh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1478.2608695652175" y="48.883928571428569"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="0gc-uD-BWl">
+            <objects>
+                <viewController id="0w4-9m-bne" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NWo-Yf-k1e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calum-lewis-vA1L1jRTM70-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="xCQ-1j-Slv">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Vov-ju-QKy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xCQ-1j-Slv" firstAttribute="top" secondItem="NWo-Yf-k1e" secondAttribute="top" id="JS2-yX-hUA"/>
+                            <constraint firstItem="xCQ-1j-Slv" firstAttribute="bottom" secondItem="NWo-Yf-k1e" secondAttribute="bottom" id="hJD-aA-0gK"/>
+                            <constraint firstItem="Vov-ju-QKy" firstAttribute="trailing" secondItem="xCQ-1j-Slv" secondAttribute="trailing" id="lmp-cn-7RI"/>
+                            <constraint firstItem="xCQ-1j-Slv" firstAttribute="leading" secondItem="Vov-ju-QKy" secondAttribute="leading" id="uZZ-Rk-ytV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="XbZ-yh-SDA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Yi-g3-hzu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2290" y="-353"/>
         </scene>
         <!--DetailVC-->
         <scene sceneID="rIz-qI-yin">
@@ -249,7 +281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GjF-cj-XXQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2224.6376811594205" y="48.883928571428569"/>
+            <point key="canvasLocation" x="2290" y="298"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="moC-Zd-Bnh">
@@ -280,6 +312,7 @@
     </scenes>
     <resources>
         <image name="Instant-Pot-Spaghetti-Recipe-11-of-4-1024x681" width="1024" height="681"/>
+        <image name="calum-lewis-vA1L1jRTM70-unsplash" width="640" height="960"/>
         <image name="ingredientsBackground" width="640" height="960"/>
         <image name="instant-pot-spaghetti-2a-700x831" width="700" height="831"/>
         <image name="wooden-plank-textured-background-material" width="2453" height="1637"/>
