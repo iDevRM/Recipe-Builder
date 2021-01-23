@@ -127,6 +127,7 @@
                                     <segment title="Time"/>
                                     <segment title="Category"/>
                                 </segments>
+                                <color key="selectedSegmentTintColor" red="0.87395084270000001" green="0.38766990569999998" blue="0.059920381750000001" alpha="0.70338571309999998" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="segmentControlTapped:" destination="XbG-Aw-0jv" eventType="valueChanged" id="NCN-XA-KSX"/>
                                 </connections>
@@ -182,46 +183,75 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calum-lewis-vA1L1jRTM70-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="xCQ-1j-Slv">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera.viewfinder" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IBN-TV-bKc">
-                                <rect key="frame" x="20" y="161" width="125" height="125"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.viewfinder" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IBN-TV-bKc">
+                                <rect key="frame" x="20" y="160.5" width="125" height="123.5"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="PTK-Nq-QLF"/>
+                                    <constraint firstAttribute="width" constant="125" id="UyX-LK-S41"/>
+                                </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Minutes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ine-ov-DET">
-                                <rect key="frame" x="153" y="221" width="79" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Minutes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ine-ov-DET">
+                                <rect key="frame" x="153" y="224" width="79" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2bd-4e-FHN">
-                                <rect key="frame" x="20" y="303" width="374" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2bd-4e-FHN">
+                                <rect key="frame" x="20" y="288" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingredients" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wiz-fq-s47">
-                                <rect key="frame" x="20" y="372" width="374" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingredients" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wiz-fq-s47">
+                                <rect key="frame" x="20" y="352" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rwD-dn-h0Q">
-                                <rect key="frame" x="153" y="166" width="232" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rwD-dn-h0Q">
+                                <rect key="frame" x="153" y="160" width="241" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s21-a8-uQH">
+                                <rect key="frame" x="26" y="167" width="111" height="109"/>
+                                <connections>
+                                    <action selector="imageButtonTapped:" destination="0w4-9m-bne" eventType="touchUpInside" id="Ele-Za-KDj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vov-ju-QKy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="rwD-dn-h0Q" firstAttribute="leading" secondItem="IBN-TV-bKc" secondAttribute="trailing" constant="8" id="0pc-y9-mbG"/>
+                            <constraint firstItem="Wiz-fq-s47" firstAttribute="top" secondItem="2bd-4e-FHN" secondAttribute="bottom" constant="30" id="1hu-KJ-P6e"/>
+                            <constraint firstItem="s21-a8-uQH" firstAttribute="top" secondItem="Vov-ju-QKy" secondAttribute="top" constant="27" id="41q-Hx-bk8"/>
+                            <constraint firstItem="s21-a8-uQH" firstAttribute="leading" secondItem="Vov-ju-QKy" secondAttribute="leading" constant="26" id="6wJ-PP-iZ6"/>
+                            <constraint firstItem="Ine-ov-DET" firstAttribute="leading" secondItem="s21-a8-uQH" secondAttribute="trailing" constant="16" id="7rc-JI-rgC"/>
+                            <constraint firstItem="Ine-ov-DET" firstAttribute="leading" secondItem="IBN-TV-bKc" secondAttribute="trailing" constant="8" id="H3p-qL-jln"/>
                             <constraint firstItem="xCQ-1j-Slv" firstAttribute="top" secondItem="NWo-Yf-k1e" secondAttribute="top" id="JS2-yX-hUA"/>
+                            <constraint firstItem="IBN-TV-bKc" firstAttribute="leading" secondItem="Vov-ju-QKy" secondAttribute="leading" constant="20" id="Qzk-pr-8jM"/>
+                            <constraint firstItem="Ine-ov-DET" firstAttribute="top" secondItem="rwD-dn-h0Q" secondAttribute="bottom" constant="30" id="RhP-Im-4tS"/>
+                            <constraint firstItem="Vov-ju-QKy" firstAttribute="trailing" secondItem="2bd-4e-FHN" secondAttribute="trailing" constant="20" id="Se5-wT-PVu"/>
+                            <constraint firstItem="Vov-ju-QKy" firstAttribute="trailing" secondItem="rwD-dn-h0Q" secondAttribute="trailing" constant="20" id="T2G-uK-mG5"/>
+                            <constraint firstItem="Vov-ju-QKy" firstAttribute="trailing" secondItem="Wiz-fq-s47" secondAttribute="trailing" constant="20" id="THh-Lj-4nV"/>
+                            <constraint firstItem="IBN-TV-bKc" firstAttribute="top" secondItem="Vov-ju-QKy" secondAttribute="top" constant="20" id="bLr-Hp-KpN"/>
+                            <constraint firstItem="2bd-4e-FHN" firstAttribute="top" secondItem="Ine-ov-DET" secondAttribute="bottom" constant="30" id="eGZ-9G-DGj"/>
+                            <constraint firstItem="Wiz-fq-s47" firstAttribute="leading" secondItem="Vov-ju-QKy" secondAttribute="leading" constant="20" id="ekv-vw-8dq"/>
+                            <constraint firstItem="2bd-4e-FHN" firstAttribute="top" secondItem="s21-a8-uQH" secondAttribute="bottom" constant="12" id="fGK-pu-LoO"/>
                             <constraint firstItem="xCQ-1j-Slv" firstAttribute="bottom" secondItem="NWo-Yf-k1e" secondAttribute="bottom" id="hJD-aA-0gK"/>
                             <constraint firstItem="Vov-ju-QKy" firstAttribute="trailing" secondItem="xCQ-1j-Slv" secondAttribute="trailing" id="lmp-cn-7RI"/>
+                            <constraint firstItem="rwD-dn-h0Q" firstAttribute="top" secondItem="Vov-ju-QKy" secondAttribute="top" constant="20" id="pLA-qw-1Mq"/>
+                            <constraint firstItem="2bd-4e-FHN" firstAttribute="leading" secondItem="Vov-ju-QKy" secondAttribute="leading" constant="20" id="uRA-AP-bx4"/>
                             <constraint firstItem="xCQ-1j-Slv" firstAttribute="leading" secondItem="Vov-ju-QKy" secondAttribute="leading" id="uZZ-Rk-ytV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add New Recipe" id="XbZ-yh-SDA"/>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="2bd-4e-FHN" id="mYm-eR-d80"/>
+                        <outlet property="imageButton" destination="s21-a8-uQH" id="zVy-2k-aks"/>
+                        <outlet property="ingredientsTextField" destination="Wiz-fq-s47" id="Zzl-xp-R41"/>
+                        <outlet property="nameTextField" destination="rwD-dn-h0Q" id="6p3-gr-V1G"/>
+                        <outlet property="timeTextField" destination="Ine-ov-DET" id="qKw-m5-tjy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Yi-g3-hzu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

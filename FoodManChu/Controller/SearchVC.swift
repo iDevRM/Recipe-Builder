@@ -21,9 +21,9 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         loadRecipes()
-                
+        print(Constants.context)
         tableView.delegate   = self
         tableView.dataSource = self
         searchBar.delegate   = self
@@ -97,10 +97,16 @@ extension SearchVC {
     
     func addNewRecipe() {
         let newItem          = Recipe(context: Constants.context)
-        newItem.name         = "Chicken Parmasean"
-        newItem.descript     = "Crispy and tender chicken with hot marinara sauce and fresh parmasean."
-        newItem.instructions = "Its amazing just try it"
+        newItem.name        = "Broccoli Beef"
+        newItem.descript     = "Tangy beef with savoury broccoli"
+        newItem.instructions = "My wives favorite"
         newItem.prepTime     = 35
+        let newIngredients = Ingredients(context: Constants.context)
+        newIngredients.name = "Broccoli Heads"
+        newIngredients.amount = "2 Cups"
+        newItem.ingredients = [newIngredients]
+        
+        
       
         
         saveItems()
@@ -117,6 +123,7 @@ extension SearchVC {
     }
     
     func loadRecipes() {
+        
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         do {
             recipeArray = try Constants.context.fetch(request)
