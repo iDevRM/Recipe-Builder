@@ -29,7 +29,7 @@ class DetailVC: UIViewController {
             for i in ingredients {
                 items[i.name!] = i.amount
             }
-            ingredientsLabel.text = "\(items.values)\(items.keys)"
+            ingredientsLabel.text = "\(items.values.first!) of \(items.keys.first!)"
         }
         
     }
