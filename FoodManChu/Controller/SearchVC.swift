@@ -83,6 +83,7 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: Constants.detailSegue, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
     

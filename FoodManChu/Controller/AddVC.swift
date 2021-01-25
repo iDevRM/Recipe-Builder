@@ -51,6 +51,7 @@ class AddVC: UIViewController {
         timeTextField.delegate             = self
         descriptionTextField.delegate      = self
         ingredientAmountTextField.delegate = self
+        instructionsTextField.delegate     = self
         imagePicker = UIImagePickerController()
         imagePicker.delegate               = self
         addNewRecipeButton.layer.cornerRadius = 8
@@ -121,6 +122,10 @@ extension AddVC: UITextFieldDelegate {
             return true
         }
     }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
 }
 
 //MARK: - Image Picker Delegate and DataSource
@@ -136,6 +141,8 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         Constants.categories[row]
     }
+    
+
     
 }
 
