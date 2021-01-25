@@ -2,7 +2,7 @@
 //  Recipe+CoreDataProperties.swift
 //  FoodManChu
 //
-//  Created by Ricardo Martinez on 1/23/21.
+//  Created by Ricardo Martinez on 1/25/21.
 //
 //
 

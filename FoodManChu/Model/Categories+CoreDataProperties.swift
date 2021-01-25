@@ -2,7 +2,7 @@
 //  Categories+CoreDataProperties.swift
 //  FoodManChu
 //
-//  Created by Ricardo Martinez on 1/23/21.
+//  Created by Ricardo Martinez on 1/25/21.
 //
 //
 
@@ -16,7 +16,7 @@ extension Categories {
         return NSFetchRequest<Categories>(entityName: "Categories")
     }
 
-    @NSManaged public var category: [String]?
+    @NSManaged public var name: String?
     @NSManaged public var recipe: NSSet?
 
 }

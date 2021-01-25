@@ -21,17 +21,17 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        loadRecipes()
-        print(Constants.context)
+       
         tableView.delegate   = self
         tableView.dataSource = self
         searchBar.delegate   = self
-        
+    
+        loadRecipes()
+       
     }
     
     @IBAction func segmentControlTapped(_ sender: UISegmentedControl) {
-        
+    
         
         switch sender.selectedSegmentIndex {
         case 0:
@@ -51,6 +51,12 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: Constants.addSegue, sender: self)
+    }
+    
+    override func didMove(toParent parent: UIViewController?) {
+        if let destVC = parent as? SearchVC {
+            destVC.tableView.reloadData()
+        }
     }
     
 }
@@ -79,14 +85,13 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destVC = segue.destination as? DetailVC {
-            print("detailVC")
             if let indexPath = tableView.indexPathForSelectedRow {
                 destVC.selectedRecipe = recipeArray[indexPath.row]
             }
         }
-        
     }
 }
     
@@ -95,31 +100,13 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
 //MARK: - Core Data Manipulation Methods
 extension SearchVC {
     
-    func addNewRecipe() {
-        let newItem          = Recipe(context: Constants.context)
-        newItem.name        = "Broccoli Beef"
-        newItem.descript     = "Tangy beef with savoury broccoli"
-        newItem.instructions = "My wives favorite"
-        newItem.prepTime     = 35
-        let newIngredients = Ingredients(context: Constants.context)
-        newIngredients.name = "Broccoli Heads"
-        newIngredients.amount = "2 Cups"
-        newItem.ingredients = [newIngredients]
-        
-        
-      
-        
-        saveItems()
-    }
-    
     func saveItems() {
-        
         do {
             try Constants.context.save()
         } catch {
             print("Error saving context: \(error)")
         }
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     func loadRecipes() {
@@ -138,7 +125,6 @@ extension SearchVC {
         recipeArray.remove(at: index)
         saveItems()
     }
-    
 }
 
 //MARK: - Core Data Search Delegates
@@ -169,10 +155,6 @@ extension SearchVC: UISearchBarDelegate {
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }
-            
         }
     }
-    
-    
-    
 }
