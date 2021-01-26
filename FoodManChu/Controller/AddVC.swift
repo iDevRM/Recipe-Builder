@@ -25,15 +25,16 @@ class AddVC: UIViewController {
     let ingredientPicker = UIPickerView()
     let categoryPicker = UIPickerView()
     var newRecipe = [Recipe]()
-    var listOfIngredients = ""
+    var arrayIngredients: [String] = []
+    var ingredientList = ""
     
     var allFieldsHaveInputs: Bool {
         if nameTextField.hasText,
            timeTextField.hasText,
            descriptionTextField.hasText,
-           ingredientAmountTextField.hasText,
-           ingredientNameTextField.hasText,
+           listOfIngredientsLabel.text != "",
            instructionsTextField.hasText,
+           categoryTextField.hasText,
            imageView.image != UIImage(systemName: "camera.viewfinder") {
             return true
         } else {
@@ -56,7 +57,7 @@ class AddVC: UIViewController {
         imagePicker = UIImagePickerController()
         setAllDelegates()
         addNewRecipeButton.layer.cornerRadius     = 8
-        listOfIngredientsLabel.layer.cornerRadius = 8
+       
         addIngredientButton.layer.cornerRadius    = 4
         
         setPickerAndToolBar()
@@ -101,9 +102,10 @@ class AddVC: UIViewController {
     }
     @IBAction func addIngredientTapped(_ sender: UIButton) {
         if ingredientAmountTextField.hasText && ingredientNameTextField.hasText {
-            listOfIngredients += "\(ingredientAmountTextField.text!) \(ingredientNameTextField.text!),"
+            arrayIngredients.append("\(ingredientAmountTextField.text!) \(ingredientNameTextField.text!)")
+            ingredientList += "\(ingredientAmountTextField.text!) \(ingredientNameTextField.text!),"
             
-            listOfIngredientsLabel.text = listOfIngredients
+            listOfIngredientsLabel.text = ingredientList
             ingredientNameTextField.text = ""
             ingredientAmountTextField.text = ""
             
@@ -128,12 +130,13 @@ class AddVC: UIViewController {
         newRecipe.prepTime     = Double(timeTextField.text!)!
         newRecipe.image        = imageView.image
         let newIngredients     = Ingredients(context: Constants.context)
-//        newIngredients.name    = ingredientNameTextField.text
+        newIngredients.name    = arrayIngredients
         newIngredients.amount  = ingredientAmountTextField.text
         newRecipe.ingredients  = [newIngredients]
         let category           = Categories(context: Constants.context)
         category.name          = Constants.categories[categoryPicker.selectedRow(inComponent: 0)]
         newRecipe.category     = [category]
+        print("New Recipe Made")
     }
     
     func saveRecipe() {
@@ -198,7 +201,7 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
         case ingredientPicker:
             ingredientNameTextField.text = Constants.ingredients[row]
         case categoryPicker:
-            categoryTextField.text = Constants.ingredients[row]
+            categoryTextField.text = Constants.categories[row]
         default:
             break
         }
