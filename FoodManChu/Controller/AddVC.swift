@@ -17,10 +17,15 @@ class AddVC: UIViewController {
     @IBOutlet weak var instructionsTextField    : UITextField!
     @IBOutlet weak var imageView                : UIImageView!
     @IBOutlet weak var addNewRecipeButton       : UIButton!
-    @IBOutlet weak var categoryPicker           : UIPickerView!
+    @IBOutlet weak var categoryTextField        : UITextField!
+    @IBOutlet weak var addIngredientButton      : UIButton!
+    @IBOutlet weak var listOfIngredientsLabel   : UILabel!
     
     var imagePicker: UIImagePickerController!
+    let ingredientPicker = UIPickerView()
+    let categoryPicker = UIPickerView()
     var newRecipe = [Recipe]()
+    var listOfIngredients = ""
     
     var allFieldsHaveInputs: Bool {
         if nameTextField.hasText,
@@ -47,22 +52,44 @@ class AddVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameTextField.delegate             = self
-        timeTextField.delegate             = self
-        descriptionTextField.delegate      = self
-        ingredientAmountTextField.delegate = self
-        instructionsTextField.delegate     = self
+        
         imagePicker = UIImagePickerController()
-        imagePicker.delegate               = self
-        addNewRecipeButton.layer.cornerRadius = 8
-        categoryPicker.delegate            = self
-        categoryPicker.dataSource          = self
-        ingredientNameTextField.delegate   = self
-        navigationController?.delegate     = self
+        setAllDelegates()
+        addNewRecipeButton.layer.cornerRadius     = 8
+        listOfIngredientsLabel.layer.cornerRadius = 8
+        addIngredientButton.layer.cornerRadius    = 4
+        
+        setPickerAndToolBar()
+        
+        
+    }
+    @objc func closePicker() {
+        ingredientNameTextField.resignFirstResponder()
+        categoryTextField.resignFirstResponder()
     }
     
     @IBAction func imageButtonTapped(_ sender: UIButton) {
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func setPickerAndToolBar() {
+        ingredientNameTextField.inputView = ingredientPicker
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(closePicker))
+        toolBar.setItems([doneButton], animated: false)
+        ingredientNameTextField.inputAccessoryView = toolBar
+        
+        categoryTextField.inputView = categoryPicker
+        let toolBar2 = UIToolbar()
+        toolBar2.barStyle = UIBarStyle.default
+        toolBar2.isTranslucent = true
+        toolBar2.sizeToFit()
+        let doneButton2 = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(closePicker))
+        toolBar2.setItems([doneButton2], animated: false)
+        categoryTextField.inputAccessoryView = toolBar2
     }
     
     @IBAction func addNewRecipeTapped(_ sender: UIButton) {
@@ -70,6 +97,16 @@ class AddVC: UIViewController {
             createRecipe()
             saveRecipe()
             clearAllTextFields()
+        }
+    }
+    @IBAction func addIngredientTapped(_ sender: UIButton) {
+        if ingredientAmountTextField.hasText && ingredientNameTextField.hasText {
+            listOfIngredients += "\(ingredientAmountTextField.text!) \(ingredientNameTextField.text!),"
+            
+            listOfIngredientsLabel.text = listOfIngredients
+            ingredientNameTextField.text = ""
+            ingredientAmountTextField.text = ""
+            
         }
     }
     
@@ -91,7 +128,7 @@ class AddVC: UIViewController {
         newRecipe.prepTime     = Double(timeTextField.text!)!
         newRecipe.image        = imageView.image
         let newIngredients     = Ingredients(context: Constants.context)
-        newIngredients.name    = ingredientNameTextField.text
+//        newIngredients.name    = ingredientNameTextField.text
         newIngredients.amount  = ingredientAmountTextField.text
         newRecipe.ingredients  = [newIngredients]
         let category           = Categories(context: Constants.context)
@@ -135,13 +172,38 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return Constants.categories.count
+        switch pickerView {
+        case ingredientPicker:
+            return Constants.ingredients.count
+        case categoryPicker:
+            return Constants.categories.count
+        default:
+            return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        Constants.categories[row]
+        switch pickerView {
+        case ingredientPicker:
+            return Constants.ingredients[row]
+        case categoryPicker:
+            return Constants.categories[row]
+        default:
+            return nil
+        }
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch pickerView {
+        case ingredientPicker:
+            ingredientNameTextField.text = Constants.ingredients[row]
+        case categoryPicker:
+            categoryTextField.text = Constants.ingredients[row]
+        default:
+            break
+        }
+        
+    }
 
     
 }
@@ -157,5 +219,20 @@ extension AddVC:  UIImagePickerControllerDelegate,  UINavigationControllerDelega
     }
 }
 
-
+extension AddVC {
+    func setAllDelegates() {
+        nameTextField.delegate             = self
+        imagePicker.delegate               = self
+        timeTextField.delegate             = self
+        descriptionTextField.delegate      = self
+        ingredientAmountTextField.delegate = self
+        instructionsTextField.delegate     = self
+        categoryPicker.delegate            = self
+        categoryPicker.dataSource          = self
+        ingredientNameTextField.delegate   = self
+        ingredientPicker.delegate                    = self
+        ingredientPicker.dataSource                  = self
+        navigationController?.delegate     = self
+    }
+}
 

@@ -2,7 +2,7 @@
 //  Ingredients+CoreDataProperties.swift
 //  FoodManChu
 //
-//  Created by Ricardo Martinez on 1/25/21.
+//  Created by Ricardo Martinez on 1/26/21.
 //
 //
 
@@ -17,7 +17,7 @@ extension Ingredients {
     }
 
     @NSManaged public var amount: String?
-    @NSManaged public var name: String?
+    @NSManaged public var name: [String]?
     @NSManaged public var recipe: NSSet?
 
 }

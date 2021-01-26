@@ -11,15 +11,15 @@
 		1D0CEAF925BB779300BB1E9A /* Categories+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CEAF325BB779300BB1E9A /* Categories+CoreDataClass.swift */; };
 		1D0CEAFB25BB779300BB1E9A /* Ingredients+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CEAF525BB779300BB1E9A /* Ingredients+CoreDataClass.swift */; };
 		1D0CEAFD25BB779300BB1E9A /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CEAF725BB779300BB1E9A /* Recipe+CoreDataClass.swift */; };
+		1D3D687825C06E33004E8BC2 /* Ingredients+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3D687525C06E33004E8BC2 /* Ingredients+CoreDataProperties.swift */; };
+		1D3D687925C06E33004E8BC2 /* Categories+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3D687625C06E33004E8BC2 /* Categories+CoreDataProperties.swift */; };
+		1D3D687A25C06E33004E8BC2 /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3D687725C06E33004E8BC2 /* Recipe+CoreDataProperties.swift */; };
 		1D8CA38025A7968700DBCE74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8CA37F25A7968700DBCE74 /* AppDelegate.swift */; };
 		1D8CA38225A7968700DBCE74 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8CA38125A7968700DBCE74 /* SceneDelegate.swift */; };
 		1D8CA38725A7968700DBCE74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D8CA38525A7968700DBCE74 /* Main.storyboard */; };
 		1D8CA38A25A7968700DBCE74 /* FoodManChu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D8CA38825A7968700DBCE74 /* FoodManChu.xcdatamodeld */; };
 		1D8CA38C25A7968800DBCE74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D8CA38B25A7968800DBCE74 /* Assets.xcassets */; };
 		1D8CA38F25A7968800DBCE74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D8CA38D25A7968800DBCE74 /* LaunchScreen.storyboard */; };
-		1DD8529425BEFEF400370368 /* Categories+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD8529125BEFEF400370368 /* Categories+CoreDataProperties.swift */; };
-		1DD8529525BEFEF400370368 /* Ingredients+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD8529225BEFEF400370368 /* Ingredients+CoreDataProperties.swift */; };
-		1DD8529625BEFEF400370368 /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD8529325BEFEF400370368 /* Recipe+CoreDataProperties.swift */; };
 		1DE431B325A8FBA2002C6A2D /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE431B225A8FBA2002C6A2D /* SearchVC.swift */; };
 		1DE431BA25A8FD43002C6A2D /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE431B925A8FD43002C6A2D /* SearchTableViewCell.swift */; };
 		1DFF35FF25B8A43A005E6311 /* SearchFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFF35FE25B8A43A005E6311 /* SearchFilters.swift */; };
@@ -32,6 +32,9 @@
 		1D0CEAF325BB779300BB1E9A /* Categories+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Categories+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1D0CEAF525BB779300BB1E9A /* Ingredients+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredients+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1D0CEAF725BB779300BB1E9A /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1D3D687525C06E33004E8BC2 /* Ingredients+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredients+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1D3D687625C06E33004E8BC2 /* Categories+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Categories+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1D3D687725C06E33004E8BC2 /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1D8CA37C25A7968700DBCE74 /* FoodManChu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodManChu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D8CA37F25A7968700DBCE74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D8CA38125A7968700DBCE74 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,9 +43,6 @@
 		1D8CA38B25A7968800DBCE74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D8CA38E25A7968800DBCE74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D8CA39025A7968800DBCE74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1DD8529125BEFEF400370368 /* Categories+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Categories+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		1DD8529225BEFEF400370368 /* Ingredients+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredients+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		1DD8529325BEFEF400370368 /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1DE431B225A8FBA2002C6A2D /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		1DE431B925A8FD43002C6A2D /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		1DFF35FE25B8A43A005E6311 /* SearchFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilters.swift; sourceTree = "<group>"; };
@@ -127,9 +127,9 @@
 		1D8CA39925A7AD7300DBCE74 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1DD8529125BEFEF400370368 /* Categories+CoreDataProperties.swift */,
-				1DD8529225BEFEF400370368 /* Ingredients+CoreDataProperties.swift */,
-				1DD8529325BEFEF400370368 /* Recipe+CoreDataProperties.swift */,
+				1D3D687525C06E33004E8BC2 /* Ingredients+CoreDataProperties.swift */,
+				1D3D687625C06E33004E8BC2 /* Categories+CoreDataProperties.swift */,
+				1D3D687725C06E33004E8BC2 /* Recipe+CoreDataProperties.swift */,
 				1DFF35FE25B8A43A005E6311 /* SearchFilters.swift */,
 			);
 			path = Model;
@@ -205,10 +205,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DD8529625BEFEF400370368 /* Recipe+CoreDataProperties.swift in Sources */,
+				1D3D687A25C06E33004E8BC2 /* Recipe+CoreDataProperties.swift in Sources */,
 				1DE431B325A8FBA2002C6A2D /* SearchVC.swift in Sources */,
+				1D3D687925C06E33004E8BC2 /* Categories+CoreDataProperties.swift in Sources */,
 				1DFF35FF25B8A43A005E6311 /* SearchFilters.swift in Sources */,
-				1DD8529425BEFEF400370368 /* Categories+CoreDataProperties.swift in Sources */,
 				1D8CA38025A7968700DBCE74 /* AppDelegate.swift in Sources */,
 				1D04333D25ACB0C50001796D /* Constants.swift in Sources */,
 				1DFF360525B8D2FA005E6311 /* AddVC.swift in Sources */,
@@ -216,9 +216,9 @@
 				1D0CEAF925BB779300BB1E9A /* Categories+CoreDataClass.swift in Sources */,
 				1D8CA38225A7968700DBCE74 /* SceneDelegate.swift in Sources */,
 				1D0CEAFD25BB779300BB1E9A /* Recipe+CoreDataClass.swift in Sources */,
+				1D3D687825C06E33004E8BC2 /* Ingredients+CoreDataProperties.swift in Sources */,
 				1DE431BA25A8FD43002C6A2D /* SearchTableViewCell.swift in Sources */,
 				1D8CA38A25A7968700DBCE74 /* FoodManChu.xcdatamodeld in Sources */,
-				1DD8529525BEFEF400370368 /* Ingredients+CoreDataProperties.swift in Sources */,
 				1DFF360225B8BC5B005E6311 /* DetailVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

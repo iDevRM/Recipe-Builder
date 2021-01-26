@@ -16,7 +16,7 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     var recipeArray  = [Recipe]()
-    var ingredients  = Ingredients()
+    
     var searchFilter = "name"
 
     override func viewDidLoad() {
@@ -27,7 +27,7 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
         searchBar.delegate   = self
     
         loadRecipes()
-       
+        
     }
     
     @IBAction func segmentControlTapped(_ sender: UISegmentedControl) {

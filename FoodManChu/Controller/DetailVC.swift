@@ -26,9 +26,9 @@ class DetailVC: UIViewController {
             prepTimeLabel.text = "\(String(format: "%0.f", recipe.prepTime)) min"
             descriptionLabel.text = recipe.descript
             let ingredients = recipe.ingredients as! Set<Ingredients>
-            for i in ingredients {
-                items[i.name!] = i.amount
-            }
+//            for i in ingredients {
+//                items[i.name!] = i.amount
+//            }
             ingredientsLabel.text = "\(items.values.first!) of \(items.keys.first!)"
         }
         
