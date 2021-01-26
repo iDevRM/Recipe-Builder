@@ -21,24 +21,26 @@ class DetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let recipe = selectedRecipe {
-            var items = ""
-            image.image = recipe.image as? UIImage ?? UIImage(named: "Instant-Pot-Spaghetti-Recipe-11-of-4-1024x681")
-            nameLabel.text = recipe.name
-            prepTimeLabel.text = "\(String(format: "%0.f", recipe.prepTime)) min"
-            descriptionLabel.text = recipe.descript
-            instructionslLabel.text = recipe.instructions!
-            let ingredients = recipe.ingredients as! Set<Ingredients>
-            for i in ingredients.first!.name! {
-                items += "\(i),"
-            }
-            ingredientsLabel.text = items
-            let category = recipe.category as! Set<Categories>
-            categoryLabel.text = "Category: \(category.first!.name!)"
+         
+        if selectedRecipe != nil {
+            setTextForAllLabels(with: selectedRecipe)
         }
         
     }
     
-
- 
+    func setTextForAllLabels(with recipe: Recipe?) {
+        var items = ""
+        image.image = recipe!.image as? UIImage ?? UIImage(named: "Instant-Pot-Spaghetti-Recipe-11-of-4-1024x681")
+        nameLabel.text = recipe!.name
+        prepTimeLabel.text = "\(String(format: "%0.f", recipe!.prepTime)) min"
+        descriptionLabel.text = recipe!.descript
+        instructionslLabel.text = recipe!.instructions!
+        let ingredients = recipe!.ingredients as! Set<Ingredients>
+        for i in ingredients.first!.name! {
+            items += "\(i),"
+        }
+        ingredientsLabel.text = items
+        let category = recipe!.category as! Set<Categories>
+        categoryLabel.text = "Category : \(category.first!.name!)"
+    }
 }

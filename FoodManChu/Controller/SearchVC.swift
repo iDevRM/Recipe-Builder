@@ -16,7 +16,7 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     var recipeArray  = [Recipe]()
-    
+    var ingredientArray = [Ingredients]()
     var searchFilter = "name"
 
     override func viewDidLoad() {
@@ -31,8 +31,6 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
     }
     
     @IBAction func segmentControlTapped(_ sender: UISegmentedControl) {
-    
-        
         switch sender.selectedSegmentIndex {
         case 0:
             searchFilter = SearchFilters.searchByName
@@ -133,20 +131,31 @@ extension SearchVC {
 extension SearchVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
-        
-        let predicate = NSPredicate(format: "\(searchFilter) CONTAINS[cd] %@", searchBar.text!)
-
-        request.predicate = predicate
-
-        do {
-            recipeArray = try Constants.context.fetch(request)
-        } catch {
-            print("Error fetching data from context: \(error)")
+        if segmentControl.selectedSegmentIndex == 2 {
+            let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+            let predicate = NSPredicate(format: "ingredients CONTAINS[cd] %@", searchBar.text!)
+            request.predicate = predicate
+            do {
+                recipeArray = try Constants.context.fetch(request)
+            } catch {
+                print("Error fetching data from context: \(error)")
+            }
+            print("Hi")
+            tableView.reloadData()
+        } else {
+            let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+            let predicate = NSPredicate(format: "\(searchFilter) CONTAINS[cd] %@", searchBar.text!)
+            request.predicate = predicate
+            do {
+                recipeArray = try Constants.context.fetch(request)
+            } catch {
+                print("Error fetching data from context: \(error)")
+            }
+            print("Hello")
+            tableView.reloadData()
         }
-
-        tableView.reloadData()
+       
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

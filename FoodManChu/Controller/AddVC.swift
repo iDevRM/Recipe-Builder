@@ -108,7 +108,12 @@ class AddVC: UIViewController {
             listOfIngredientsLabel.text = ingredientList
             ingredientNameTextField.text = ""
             ingredientAmountTextField.text = ""
-            
+        }
+        if ingredientNameTextField.hasText {
+            if !Constants.ingredients.contains(ingredientNameTextField.text!) {
+                Constants.ingredients.append(ingredientNameTextField.text!)
+                ingredientNameTextField.text = ""
+            }
         }
     }
     
