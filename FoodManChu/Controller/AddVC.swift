@@ -61,15 +61,20 @@ class AddVC: UIViewController {
         setPickerAndToolBar()
         addNewRecipeButton.layer.cornerRadius     = 8
         addIngredientButton.layer.cornerRadius    = 4
+       
         
-        for i in Constants.ingredients {
-            let newIngredient = Ingredients(context: Constants.context)
-            newIngredient.name = i
-            preloadedIngredients.append(newIngredient)
-            saveItems()
+
+    }
+    
+    func loadRecipes() {
+        
+        let request: NSFetchRequest<Ingredients> = Ingredients.fetchRequest()
+        do {
+           preloadedIngredients = try Constants.context.fetch(request)
+        } catch {
+            print("Error fetching data from context: \(error)")
         }
-        
-        
+       
     }
     
     @objc func closePicker() {
@@ -105,7 +110,7 @@ class AddVC: UIViewController {
     @IBAction func addNewRecipeTapped(_ sender: UIButton) {
         if allFieldsHaveInputs {
             createRecipe()
-            saveRecipe()
+            save()
             clearAllTextFields()
             tableView.reloadData()
         }
@@ -116,11 +121,10 @@ class AddVC: UIViewController {
             newIngredient.name = ingredientNameTextField.text
             newIngredient.amount = ingredientAmountTextField.text
             ingredientArray.append(newIngredient)
-            
-//            if !ingredientList.name!.contains(ingredientNameTextField.text!) {
-//                ingredientList.name!.append(ingredientNameTextField.text!)
-//                saveItems()
-//            }
+            save()
+            if !Constants.ingredients.contains(newIngredient.name!) {
+                Constants.ingredients.append(newIngredient.name!)
+            }
             
             ingredientNameTextField.text = ""
             ingredientAmountTextField.text = ""
@@ -132,23 +136,7 @@ class AddVC: UIViewController {
         tableView.reloadData()
     }
     
-    func saveItems() {
-        do {
-            try Constants.context.save()
-        } catch {
-            print("Error saving context: \(error)")
-        }
-    }
-//    func loadRecipes() {
-//
-//        let request: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
-//        do {
-//            ingredientList.name = try Constants.context.fetch(request) as! [String]
-//        } catch {
-//            print("Error fetching data from context: \(error)")
-//        }
-//        tableView.reloadData()
-//    }
+    
     
     func clearAllTextFields() {
         nameTextField.text = ""
@@ -175,7 +163,7 @@ class AddVC: UIViewController {
 //        newRecipe.category     = [category]
     }
     
-    func saveRecipe() {
+    func save() {
         do {
             try Constants.context.save()
         } catch {
@@ -213,7 +201,7 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
         case ingredientPicker:
-            return preloadedIngredients.count
+            return Constants.ingredients.count
         case categoryPicker:
             return Constants.categories.count
         default:
@@ -224,7 +212,7 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
         case ingredientPicker:
-            return preloadedIngredients[row].name
+            return Constants.ingredients.sorted { $0 < $1 }[row]
         case categoryPicker:
             return Constants.categories[row]
         default:
@@ -235,7 +223,7 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
         case ingredientPicker:
-            ingredientNameTextField.text = preloadedIngredients[row].name
+            ingredientNameTextField.text = Constants.ingredients.sorted { $0 < $1 }[row]
         case categoryPicker:
             categoryTextField.text = Constants.categories[row]
         default:
