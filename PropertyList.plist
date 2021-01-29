@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>Zest (Lemon)</string>
+	<string>Pistachio</string>
+	<string>Mustard Seed </string>
+	<string>Pecans</string>
+	<string>Cashews</string>
+	<string>Peanuts</string>
+	<string>Almonds</string>
+	<string>Coconut Oil</string>
+	<string>Avacado Oil</string>
+	<string>Olive Oil</string>
+	<string>Baking Soda</string>
+	<string>Baking Powder</string>
+	<string>Flour</string>
+	<string>Sugar</string>
+	<string>All Spice</string>
+	<string>Cloves</string>
+	<string>Parsley</string>
+	<string>Basil</string>
+	<string>Star Anise</string>
+	<string>Cayenne</string>
+	<string>Thyme</string>
+	<string>Cumin</string>
+	<string>Curry</string>
+	<string>Dill</string>
+	<string>Fennel</string>
+	<string>Garam Masala</string>
+	<string>Cinnamon</string>
+	<string>Nutmeg</string>
+	<string>Pepper</string>
+	<string>Salt</string>
+	<string>Mint</string>
+	<string>Lemongrass</string>
+	<string>Paprika</string>
+	<string>Oregano</string>
+	<string>Sage</string>
+	<string>Chives</string>
+	<string>Coriander</string>
+	<string>Ginger</string>
+	<string>Avacado</string>
+	<string>Bell Pepper</string>
+	<string>Green Bean</string>
+	<string>Broccoli</string>
+	<string>Carrot</string>
+	<string>Cucumber</string>
+	<string>Garlic</string>
+	<string>Jalapeño</string>
+	<string>Lettuce</string>
+	<string>Mushroom</string>
+	<string>Onion</string>
+	<string>Potato</string>
+	<string>Spinach</string>
+	<string>Tomato</string>
+	<string>Mango</string>
+	<string>Blueberry</string>
+	<string>Kiwi</string>
+	<string>Strawberry</string>
+	<string>Banana</string>
+	<string>Orange</string>
+	<string>Butter</string>
+	<string>Cheese</string>
+	<string>Milk</string>
+	<string>Bacon</string>
+	<string>Crab</string>
+	<string>Fish</string>
+	<string>Turkey</string>
+	<string>Ham</string>
+	<string>Chicken Breast</string>
+	<string>Ground Beef</string>
+</array>
+</plist>

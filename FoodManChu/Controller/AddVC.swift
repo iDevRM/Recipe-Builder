@@ -62,19 +62,29 @@ class AddVC: UIViewController {
         addNewRecipeButton.layer.cornerRadius     = 8
         addIngredientButton.layer.cornerRadius    = 4
        
+        loadIngredients()
         
-
+        print(preloadedIngredients.count)
+        
+        
+        
     }
     
-    func loadRecipes() {
+    func loadIngredients() {
         
         let request: NSFetchRequest<Ingredients> = Ingredients.fetchRequest()
         do {
-           preloadedIngredients = try Constants.context.fetch(request)
+            preloadedIngredients = try Constants.context.fetch(request)
         } catch {
             print("Error fetching data from context: \(error)")
         }
        
+    }
+    
+    func removeRecipe(at index: Int) {
+        Constants.context.delete(preloadedIngredients[index])
+        preloadedIngredients.remove(at: index)
+        save()
     }
     
     @objc func closePicker() {
