@@ -2,7 +2,7 @@
 //  Recipe+CoreDataProperties.swift
 //  FoodManChu
 //
-//  Created by Ricardo Martinez on 1/27/21.
+//  Created by Ricardo Martinez on 1/28/21.
 //
 //
 
@@ -21,25 +21,8 @@ extension Recipe {
     @NSManaged public var instructions: String?
     @NSManaged public var name: String?
     @NSManaged public var prepTime: Double
-    @NSManaged public var category: NSSet?
+    @NSManaged public var category: Categories?
     @NSManaged public var ingredients: NSSet?
-
-}
-
-// MARK: Generated accessors for category
-extension Recipe {
-
-    @objc(addCategoryObject:)
-    @NSManaged public func addToCategory(_ value: Categories)
-
-    @objc(removeCategoryObject:)
-    @NSManaged public func removeFromCategory(_ value: Categories)
-
-    @objc(addCategory:)
-    @NSManaged public func addToCategory(_ values: NSSet)
-
-    @objc(removeCategory:)
-    @NSManaged public func removeFromCategory(_ values: NSSet)
 
 }
 

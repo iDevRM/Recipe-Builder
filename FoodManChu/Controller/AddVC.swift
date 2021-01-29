@@ -132,16 +132,16 @@ class AddVC: UIViewController {
             print("Error saving context: \(error)")
         }
     }
-//    func loadRecipes() {
-//        
-//        let request: NSFetchRequest<Ingredients> = Ingredients.fetchRequest()
-//        do {
-//            ingredientList.name = try Constants.context.fetch(request) as! [String]
-//        } catch {
-//            print("Error fetching data from context: \(error)")
-//        }
-//        tableView.reloadData()
-//    }
+    func loadRecipes() {
+        
+        let request: NSFetchRequest<Ingredients> = Ingredients.fetchRequest()
+        do {
+            ingredientList.name = try Constants.context.fetch(request) as! [String]
+        } catch {
+            print("Error fetching data from context: \(error)")
+        }
+        tableView.reloadData()
+    }
     
     func clearAllTextFields() {
         nameTextField.text = ""
