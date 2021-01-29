@@ -2,7 +2,7 @@
 //  Categories+CoreDataProperties.swift
 //  FoodManChu
 //
-//  Created by Ricardo Martinez on 1/26/21.
+//  Created by Ricardo Martinez on 1/27/21.
 //
 //
 

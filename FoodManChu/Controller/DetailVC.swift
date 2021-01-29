@@ -21,11 +21,10 @@ class DetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         
+        
         if selectedRecipe != nil {
             setTextForAllLabels(with: selectedRecipe)
         }
-        
     }
     
     func setTextForAllLabels(with recipe: Recipe?) {
@@ -37,6 +36,7 @@ class DetailVC: UIViewController {
         instructionslLabel.text = recipe!.instructions!
         let ingredients = recipe!.ingredients as! Set<Ingredients>
         for i in ingredients.first!.name! {
+            print(i)
             items += "\(i),"
         }
         ingredientsLabel.text = items

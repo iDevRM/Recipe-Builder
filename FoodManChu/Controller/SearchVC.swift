@@ -18,6 +18,7 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
     var recipeArray  = [Recipe]()
     var ingredientArray = [Ingredients]()
     var searchFilter = "name"
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,10 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
         tableView.delegate   = self
         tableView.dataSource = self
         searchBar.delegate   = self
-    
+        
+        
+        
+        
         loadRecipes()
         
     }
@@ -84,6 +88,18 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
         
     }
     
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+//        return .delete
+//    }
+//
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            tableView.beginUpdates()
+//
+//            tableView.endUpdates()
+//        }
+//    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destVC = segue.destination as? DetailVC {
@@ -92,6 +108,7 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
             }
         }
     }
+    
 }
     
 
@@ -124,6 +141,7 @@ extension SearchVC {
         recipeArray.remove(at: index)
         saveItems()
     }
+   
 }
 
 //MARK: - Core Data Search Delegates
@@ -131,31 +149,23 @@ extension SearchVC {
 extension SearchVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        
         if segmentControl.selectedSegmentIndex == 2 {
-            let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
-            let predicate = NSPredicate(format: "ingredients CONTAINS[cd] %@", searchBar.text!)
+            let predicate = NSPredicate(format: "ingredients.name CONTAINS[cd] %@", searchBar.text!)
             request.predicate = predicate
-            do {
-                recipeArray = try Constants.context.fetch(request)
-            } catch {
-                print("Error fetching data from context: \(error)")
-            }
-            print("Hi")
-            tableView.reloadData()
         } else {
-            let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
             let predicate = NSPredicate(format: "\(searchFilter) CONTAINS[cd] %@", searchBar.text!)
             request.predicate = predicate
-            do {
-                recipeArray = try Constants.context.fetch(request)
-            } catch {
-                print("Error fetching data from context: \(error)")
-            }
-            print("Hello")
-            tableView.reloadData()
         }
-       
         
+        do {
+            recipeArray = try Constants.context.fetch(request)
+        } catch {
+            print("Error fetching data from context: \(error)")
+        }
+        
+        tableView.reloadData()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
