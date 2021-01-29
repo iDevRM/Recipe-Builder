@@ -16,7 +16,7 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     var recipeArray  = [Recipe]()
-    var ingredientArray = [Ingredients]()
+    var ingredientArray = [Ingredient]()
     var searchFilter = "name"
     
 

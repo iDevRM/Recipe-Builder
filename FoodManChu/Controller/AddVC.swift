@@ -29,7 +29,7 @@ class AddVC: UIViewController {
     var newRecipe = [Recipe]()
     var arrayIngredients: [String] = []
     var arrayOfAmounts: [String] = []
-    let ingredientList = Ingredients(context: Constants.context)
+    let ingredientList = Ingredient(context: Constants.context)
   
     
     var allFieldsHaveInputs: Bool {
@@ -134,7 +134,7 @@ class AddVC: UIViewController {
     }
     func loadRecipes() {
         
-        let request: NSFetchRequest<Ingredients> = Ingredients.fetchRequest()
+        let request: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
         do {
             ingredientList.name = try Constants.context.fetch(request) as! [String]
         } catch {
@@ -163,7 +163,7 @@ class AddVC: UIViewController {
         newRecipe.instructions = instructionsTextField.text
         newRecipe.prepTime     = Double(timeTextField.text!)!
         newRecipe.image        = imageView.image
-        let newIngredients     = Ingredients(context: Constants.context)
+        let newIngredients     = Ingredient(context: Constants.context)
         newIngredients.name    = arrayIngredients
         newIngredients.amount  = arrayOfAmounts
         newRecipe.ingredients  = [newIngredients]

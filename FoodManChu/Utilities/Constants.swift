@@ -14,7 +14,7 @@ struct Constants {
     static let detailSegue = "DetailSegue"
     static let addSegue    = "AddSegue"
     
-    static var ingredientInstance = Ingredients(context: context)
+    static var ingredientInstance = Ingredient(context: context)
     
     static let categories: [String?] = ["Meat","Vegetarian","Vegan","Paleo","Keto"]
     
