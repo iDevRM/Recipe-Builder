@@ -30,10 +30,10 @@ extension Recipe {
 extension Recipe {
 
     @objc(addIngredientsObject:)
-    @NSManaged public func addToIngredients(_ value: Ingredient)
+    @NSManaged public func addToIngredients(_ value: Ingredients)
 
     @objc(removeIngredientsObject:)
-    @NSManaged public func removeFromIngredients(_ value: Ingredient)
+    @NSManaged public func removeFromIngredients(_ value: Ingredients)
 
     @objc(addIngredients:)
     @NSManaged public func addToIngredients(_ values: NSSet)
