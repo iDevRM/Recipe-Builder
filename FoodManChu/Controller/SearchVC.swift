@@ -141,7 +141,6 @@ extension SearchVC {
         recipeArray.remove(at: index)
         saveItems()
     }
-   
 }
 
 //MARK: - Core Data Search Delegates

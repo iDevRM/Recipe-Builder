@@ -31,6 +31,7 @@ class AddVC: UIViewController {
     var ingredientArray = [Ingredients]()
     var preloadedIngredients = [Ingredients]()
     var pickerArray: [String] = []
+    var ingredientSet = Set<Ingredients>()
     
     var allFieldsHaveInputs: Bool {
         if nameTextField.hasText,
@@ -79,6 +80,16 @@ class AddVC: UIViewController {
         }
     }
     
+    func loadNewIngredients() {
+        let request: NSFetchRequest<Ingredients> = Ingredients.fetchRequest()
+        do {
+            ingredientArray = try Constants.context.fetch(request)
+        } catch {
+            print("Error fetching data from context: \(error)")
+        }
+        
+    }
+    
     func loadIngredients() {
         
         let request: NSFetchRequest<Ingredients> = Ingredients.fetchRequest()
@@ -87,7 +98,6 @@ class AddVC: UIViewController {
         } catch {
             print("Error fetching data from context: \(error)")
         }
-       
     }
     
     func removeRecipe(at index: Int) {
@@ -140,7 +150,7 @@ class AddVC: UIViewController {
             newIngredient.name = ingredientNameTextField.text
             newIngredient.amount = ingredientAmountTextField.text
             ingredientArray.append(newIngredient)
-            save()
+
             if !pickerArray.contains(ingredientNameTextField.text!) {
                 pickerArray.removeAll()
                 loadIngredients()
@@ -168,15 +178,18 @@ class AddVC: UIViewController {
     
     func createRecipe() {
         let newRecipe          = Recipe(context: Constants.context)
-        newRecipe.name         = nameTextField.text
-        newRecipe.descript     = descriptionTextField.text
-        newRecipe.instructions = instructionsTextField.text
+        newRecipe.name         = nameTextField.text!
+        newRecipe.descript     = descriptionTextField.text!
+        newRecipe.instructions = instructionsTextField.text!
         newRecipe.prepTime     = Double(timeTextField.text!)!
         newRecipe.image        = imageView.image
-//        newRecipe.ingredien    = ingredientArray
+        for i in ingredientArray {
+            ingredientSet.insert(i)
+        }
+        newRecipe.ingredients  = ingredientSet as! NSSet
         let category           = Categories(context: Constants.context)
-        category.name          = Constants.categories[categoryPicker.selectedRow(inComponent: 0)]
-//        newRecipe.category     = [category]
+        category.name          = categoryTextField.text!
+        newRecipe.category     = category
     }
     
     func save() {
@@ -299,17 +312,14 @@ extension AddVC: UITableViewDelegate, UITableViewDataSource {
         return .delete
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            tableView.beginUpdates()
-//            ingredientList.name?.remove(at: indexPath.row)
-//            ingredientList.amount?.remove(at: indexPath.row)
-//            arrayIngredients.remove(at: indexPath.row)
-//            arrayOfAmounts.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//            tableView.endUpdates()
-//        }
-//    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            ingredientArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+        }
+    }
     
     
 }
