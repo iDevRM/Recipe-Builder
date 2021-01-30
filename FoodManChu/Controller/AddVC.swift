@@ -30,6 +30,7 @@ class AddVC: UIViewController {
     var newIngredient = Ingredients(context: Constants.context)
     var ingredientArray = [Ingredients]()
     var preloadedIngredients = [Ingredients]()
+    var pickerArray: [String] = []
     
     var allFieldsHaveInputs: Bool {
         if nameTextField.hasText,
@@ -63,11 +64,19 @@ class AddVC: UIViewController {
         addIngredientButton.layer.cornerRadius    = 4
        
         loadIngredients()
-        
+        ingredientNamesAssigned()
         print(preloadedIngredients.count)
         
         
         
+    }
+    
+    func ingredientNamesAssigned() {
+        for i in preloadedIngredients {
+            if i.name != nil {
+                pickerArray.append(i.name!)
+            }
+        }
     }
     
     func loadIngredients() {
@@ -211,7 +220,7 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
         case ingredientPicker:
-            return Constants.ingredients.count
+            return pickerArray.count
         case categoryPicker:
             return Constants.categories.count
         default:
@@ -222,7 +231,7 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
         case ingredientPicker:
-            return Constants.ingredients.sorted { $0 < $1 }[row]
+            return pickerArray.sorted { $0 < $1 }[row]
         case categoryPicker:
             return Constants.categories[row]
         default:
@@ -233,7 +242,7 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
         case ingredientPicker:
-            ingredientNameTextField.text = Constants.ingredients.sorted { $0 < $1 }[row]
+            ingredientNameTextField.text = pickerArray.sorted { $0 < $1 }[row]
         case categoryPicker:
             categoryTextField.text = Constants.categories[row]
         default:
