@@ -27,7 +27,7 @@ class AddVC: UIViewController {
     let ingredientPicker = UIPickerView()
     let categoryPicker = UIPickerView()
     var newRecipe: Recipe?
-    var newIngredient = Ingredients(context: Constants.context)
+    
     var ingredientArray = [Ingredients]()
     var preloadedIngredients = [Ingredients]()
     var pickerArray: [String] = []
@@ -147,6 +147,7 @@ class AddVC: UIViewController {
     
     @IBAction func addIngredientTapped(_ sender: UIButton) {
         if ingredientAmountTextField.hasText && ingredientNameTextField.hasText {
+            let newIngredient = Ingredients()
             newIngredient.name = ingredientNameTextField.text
             newIngredient.amount = ingredientAmountTextField.text
             ingredientArray.append(newIngredient)
@@ -186,6 +187,8 @@ class AddVC: UIViewController {
         for i in ingredientArray {
             ingredientSet.insert(i)
         }
+        
+        // we dont want to add a new item of type Ingredients, we want to add what Ingredient has the same name.
         newRecipe.ingredients  = ingredientSet as! NSSet
         let category           = Categories(context: Constants.context)
         category.name          = categoryTextField.text!

@@ -35,12 +35,16 @@ class DetailVC: UIViewController {
         descriptionLabel.text = recipe!.descript
         instructionslLabel.text = recipe!.instructions!
         let ingredients = recipe!.ingredients as! Set<Ingredients>
-        for i in ingredients.first!.name! {
-            print(i)
-            items += "\(i),"
+        for ingredient in ingredients {
+            if ingredient.name != nil {
+                items += "\(ingredient.name!),"
+            }
+            
         }
         ingredientsLabel.text = items
-        let category = recipe!.category as! Set<Categories>
-        categoryLabel.text = "Category : \(category.first!.name!)"
+        if let category = recipe?.category?.name {
+            categoryLabel.text = "Category : \(category)"
+        }
+        
     }
 }
