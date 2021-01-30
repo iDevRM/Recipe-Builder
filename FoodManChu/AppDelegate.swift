@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func preloadData() {
-        let preloadedDataKey = "preloadData"
+        let preloadedDataKey = "preloadedData"
         
         let userDefualts = UserDefaults.standard
         

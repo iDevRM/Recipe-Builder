@@ -141,17 +141,14 @@ class AddVC: UIViewController {
             newIngredient.amount = ingredientAmountTextField.text
             ingredientArray.append(newIngredient)
             save()
-            if !Constants.ingredients.contains(newIngredient.name!) {
-                Constants.ingredients.append(newIngredient.name!)
+            if !pickerArray.contains(ingredientNameTextField.text!) {
+                pickerArray.removeAll()
+                loadIngredients()
+                ingredientNamesAssigned()
             }
-            
             ingredientNameTextField.text = ""
             ingredientAmountTextField.text = ""
         }
-        
-            // create new Ingredient object. add new object to array. set array to new object. save. load picker with new Object
-            
-        
         tableView.reloadData()
     }
     
