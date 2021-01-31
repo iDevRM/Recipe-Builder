@@ -14,20 +14,21 @@ class AddVC: UIViewController {
     @IBOutlet weak var descriptionTextField     : UITextField!
     @IBOutlet weak var ingredientAmountTextField: UITextField!
     @IBOutlet weak var imageButton              : UIButton!
-    @IBOutlet weak var ingredientNameTextField           : UITextField!
+    @IBOutlet weak var ingredientNameTextField  : UITextField!
     @IBOutlet weak var instructionsTextField    : UITextField!
     @IBOutlet weak var imageView                : UIImageView!
     @IBOutlet weak var addNewRecipeButton       : UIButton!
     @IBOutlet weak var categoryTextField        : UITextField!
     @IBOutlet weak var addIngredientButton      : UIButton!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView                : UITableView!
     
     
     var imagePicker: UIImagePickerController!
     let ingredientPicker = UIPickerView()
     let categoryPicker = UIPickerView()
     var newRecipe: Recipe?
-    
+    var storedIngredientNames = [String]()
+    var storedIngredientAmounts = [String]()
     var ingredientArray = [Ingredients]()
     var preloadedIngredients = [Ingredients]()
     var pickerArray: [String] = []
@@ -65,6 +66,10 @@ class AddVC: UIViewController {
         addIngredientButton.layer.cornerRadius    = 4
        
         loadIngredients()
+        
+       
+            
+        
         ingredientNamesAssigned()
         print(preloadedIngredients.count)
         
@@ -147,16 +152,21 @@ class AddVC: UIViewController {
     
     @IBAction func addIngredientTapped(_ sender: UIButton) {
         if ingredientAmountTextField.hasText && ingredientNameTextField.hasText {
-            let newIngredient = Ingredients()
-            newIngredient.name = ingredientNameTextField.text
-            newIngredient.amount = ingredientAmountTextField.text
-            ingredientArray.append(newIngredient)
-
             if !pickerArray.contains(ingredientNameTextField.text!) {
-                pickerArray.removeAll()
-                loadIngredients()
-                ingredientNamesAssigned()
+                let newIngredient = Ingredients(context: Constants.context)
+                newIngredient.name = ingredientNameTextField.text!
+                save()
+                storedIngredientNames.append(ingredientNameTextField.text!)
+                storedIngredientAmounts.append(ingredientAmountTextField.text!)
+            } else {
+                storedIngredientNames.append(ingredientNameTextField.text!)
+                storedIngredientAmounts.append(ingredientAmountTextField.text!)
             }
+            
+            loadIngredients()
+            pickerArray.removeAll()
+            ingredientNamesAssigned()
+            
             ingredientNameTextField.text = ""
             ingredientAmountTextField.text = ""
         }
@@ -166,13 +176,13 @@ class AddVC: UIViewController {
     
     
     func clearAllTextFields() {
-        nameTextField.text = ""
-        timeTextField.text = ""
-        descriptionTextField.text = ""
-        instructionsTextField.text = ""
+        nameTextField.text             = ""
+        timeTextField.text             = ""
+        descriptionTextField.text      = ""
+        instructionsTextField.text     = ""
         ingredientAmountTextField.text = ""
-        ingredientNameTextField.text = ""
-        categoryTextField.text = ""
+        ingredientNameTextField.text   = ""
+        categoryTextField.text         = ""
         ingredientArray.removeAll()
         imageView.image = UIImage(systemName: "camera.viewfinder")
     }
@@ -184,12 +194,12 @@ class AddVC: UIViewController {
         newRecipe.instructions = instructionsTextField.text!
         newRecipe.prepTime     = Double(timeTextField.text!)!
         newRecipe.image        = imageView.image
-        for i in ingredientArray {
-            ingredientSet.insert(i)
+        for i in storedIngredientNames {
+            if let ingredient = preloadedIngredients.first(where: { $0.name == i }) {
+                ingredientSet.insert(ingredient)
+            }
         }
-        
-        // we dont want to add a new item of type Ingredients, we want to add what Ingredient has the same name.
-        newRecipe.ingredients  = ingredientSet as! NSSet
+        newRecipe.ingredients  = ingredientSet as NSSet
         let category           = Categories(context: Constants.context)
         category.name          = categoryTextField.text!
         newRecipe.category     = category
@@ -299,13 +309,13 @@ extension AddVC {
 
 extension AddVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredientArray.count
+        return storedIngredientNames.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientListCell", for: indexPath) as? IngredientListCell {
-            cell.configCell(ingredientArray[indexPath.row])
+            cell.configCell(storedIngredientNames[indexPath.row], storedIngredientAmounts[indexPath.row])
             return cell
         }
         return UITableViewCell()

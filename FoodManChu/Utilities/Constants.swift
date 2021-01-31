@@ -14,7 +14,7 @@ struct Constants {
     static let detailSegue = "DetailSegue"
     static let addSegue    = "AddSegue"
     
-    
+    static let shared = Ingredients()
     
     static let categories: [String?] = ["Meat","Vegetarian","Vegan","Paleo","Keto"]
     

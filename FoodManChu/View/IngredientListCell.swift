@@ -13,9 +13,9 @@ class IngredientListCell: UITableViewCell {
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
-    func configCell(_ ingredient: Ingredients) {
-        amountLabel.text = ingredient.amount
-        nameLabel.text = ingredient.name
+    func configCell(_ name: String, _ amount: String) {
+        amountLabel.text = amount
+        nameLabel.text   = name
     }
     
 }

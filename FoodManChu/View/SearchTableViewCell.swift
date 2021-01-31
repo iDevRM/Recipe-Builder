@@ -26,9 +26,6 @@ class SearchTableViewCell: UITableViewCell {
         topLabel.text                = recipe.name
         middleLabel.text             = "\(String(format: "%0.f", recipe.prepTime)) min"
         bottomLabel.text             = recipe.descript
-        
     }
-    
-    
-    
+ 
 }

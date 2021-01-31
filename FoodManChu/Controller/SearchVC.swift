@@ -13,7 +13,7 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var searchBar     : UISearchBar!
     @IBOutlet weak var tableView     : UITableView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
-    @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet weak var addButton     : UIBarButtonItem!
     
     var recipeArray  = [Recipe]()
     

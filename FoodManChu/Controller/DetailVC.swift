@@ -8,14 +8,14 @@
 import UIKit
 
 class DetailVC: UIViewController {
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var prepTimeLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var ingredientsLabel: UILabel!
-    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var image             : UIImageView!
+    @IBOutlet weak var nameLabel         : UILabel!
+    @IBOutlet weak var prepTimeLabel     : UILabel!
+    @IBOutlet weak var descriptionLabel  : UILabel!
+    @IBOutlet weak var ingredientsLabel  : UILabel!
+    @IBOutlet weak var backgroundImage   : UIImageView!
     @IBOutlet weak var instructionslLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var categoryLabel     : UILabel!
     
     var selectedRecipe: Recipe?
     
@@ -39,12 +39,11 @@ class DetailVC: UIViewController {
             if ingredient.name != nil {
                 items += "\(ingredient.name!),"
             }
-            
         }
+        print(items)
         ingredientsLabel.text = items
         if let category = recipe?.category?.name {
             categoryLabel.text = "Category : \(category)"
         }
-        
     }
 }
