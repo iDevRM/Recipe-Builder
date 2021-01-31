@@ -192,7 +192,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2bd-4e-FHN">
+                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" adjustsFontForContentSizeCategory="YES" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="2bd-4e-FHN">
                                 <rect key="frame" x="20" y="251" width="374" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="aAw-wY-RRe"/>
@@ -200,7 +200,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="753" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Instructions" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fag-Me-8Af">
+                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="753" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Instructions" adjustsFontForContentSizeCategory="YES" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="fag-Me-8Af">
                                 <rect key="frame" x="20" y="319" width="374" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="K0E-66-d3U"/>
@@ -345,6 +345,7 @@
                                 </state>
                                 <connections>
                                     <action selector="createNewIngredientTapped:" destination="0w4-9m-bne" eventType="touchUpInside" id="Mma-lh-Mst"/>
+                                    <segue destination="gWe-8g-4I9" kind="show" id="zUh-NK-ezh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -413,6 +414,86 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Yi-g3-hzu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2289.8550724637685" y="-353.57142857142856"/>
+        </scene>
+        <!--Create New Ingredient-->
+        <scene sceneID="b83-pf-oql">
+            <objects>
+                <viewController id="gWe-8g-4I9" customClass="IngredientVC" customModule="FoodManChu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pWc-o3-qyg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ingredientsWallpaper" translatesAutoresizingMaskIntoConstraints="NO" id="b30-af-OEE">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="HPc-Q5-43u">
+                                <rect key="frame" x="46" y="369" width="321" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHk-vh-Nmv">
+                                        <rect key="frame" x="0.0" y="0.0" width="152.5" height="50"/>
+                                        <color key="backgroundColor" red="0.87395084270000001" green="0.38766990569999998" blue="0.059920381750000001" alpha="0.70338571309999998" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="gb1-aP-s6L"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Add Ingredient">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addButtonTapped:" destination="gWe-8g-4I9" eventType="touchUpInside" id="9uL-2Y-fa6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFf-Yb-9OI">
+                                        <rect key="frame" x="168.5" y="0.0" width="152.5" height="50"/>
+                                        <color key="backgroundColor" red="0.87395084270000001" green="0.38766990569999998" blue="0.059920381750000001" alpha="0.70338571309999998" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="zhT-9w-wJQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Delete Ingredient">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteButtonTapped:" destination="gWe-8g-4I9" eventType="touchUpInside" id="nuI-EG-Wif"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingredient Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2de-B8-TQ5">
+                                <rect key="frame" x="46" y="303" width="321" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.77209038129999996" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="DmF-zk-u5i"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ad8-To-yT7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2de-B8-TQ5" firstAttribute="leading" secondItem="Ad8-To-yT7" secondAttribute="leading" constant="46" id="6NX-0L-XBR"/>
+                            <constraint firstItem="b30-af-OEE" firstAttribute="leading" secondItem="Ad8-To-yT7" secondAttribute="leading" id="7T2-JN-CuW"/>
+                            <constraint firstItem="b30-af-OEE" firstAttribute="top" secondItem="pWc-o3-qyg" secondAttribute="top" id="7rG-NU-ANk"/>
+                            <constraint firstItem="2de-B8-TQ5" firstAttribute="top" secondItem="Ad8-To-yT7" secondAttribute="top" constant="163" id="8kV-gZ-knM"/>
+                            <constraint firstItem="Ad8-To-yT7" firstAttribute="trailing" secondItem="b30-af-OEE" secondAttribute="trailing" id="EIv-Zb-wp7"/>
+                            <constraint firstItem="Ad8-To-yT7" firstAttribute="trailing" secondItem="HPc-Q5-43u" secondAttribute="trailing" constant="47" id="I7T-YF-8Eg"/>
+                            <constraint firstItem="b30-af-OEE" firstAttribute="bottom" secondItem="pWc-o3-qyg" secondAttribute="bottom" id="IAM-oL-PsN"/>
+                            <constraint firstItem="HPc-Q5-43u" firstAttribute="top" secondItem="2de-B8-TQ5" secondAttribute="bottom" constant="16" id="qXK-Le-lXz"/>
+                            <constraint firstItem="Ad8-To-yT7" firstAttribute="trailing" secondItem="2de-B8-TQ5" secondAttribute="trailing" constant="47" id="z2a-iU-z2P"/>
+                            <constraint firstItem="HPc-Q5-43u" firstAttribute="leading" secondItem="Ad8-To-yT7" secondAttribute="leading" constant="46" id="zQB-ZF-v0n"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create New Ingredient" largeTitleDisplayMode="always" id="Ex9-WT-16H"/>
+                    <connections>
+                        <outlet property="addButton" destination="EHk-vh-Nmv" id="Ac0-1Z-NdG"/>
+                        <outlet property="deleteButton" destination="iFf-Yb-9OI" id="2Px-aa-Fba"/>
+                        <outlet property="textField" destination="2de-B8-TQ5" id="S5N-dM-VyM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fzt-vU-9fk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2985.507246376812" y="-354.24107142857139"/>
         </scene>
         <!--Details-->
         <scene sceneID="rIz-qI-yin">
@@ -545,6 +626,7 @@
         <image name="calum-lewis-vA1L1jRTM70-unsplash" width="640" height="960"/>
         <image name="camera.viewfinder" catalog="system" width="128" height="115"/>
         <image name="ingredientsBackground" width="640" height="960"/>
+        <image name="ingredientsWallpaper" width="1244" height="1866"/>
         <image name="instant-pot-spaghetti-2a-700x831" width="700" height="831"/>
         <image name="wooden-plank-textured-background-material" width="2453" height="1637"/>
         <systemColor name="systemBackgroundColor">
