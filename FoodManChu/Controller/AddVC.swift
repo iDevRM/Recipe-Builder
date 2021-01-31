@@ -21,6 +21,7 @@ class AddVC: UIViewController {
     @IBOutlet weak var categoryTextField        : UITextField!
     @IBOutlet weak var addIngredientButton      : UIButton!
     @IBOutlet weak var tableView                : UITableView!
+    @IBOutlet weak var createNewIngredientButton: UIButton!
     
     
     var imagePicker: UIImagePickerController!
@@ -59,21 +60,15 @@ class AddVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imagePicker = UIImagePickerController()
+        addNewRecipeButton.layer.cornerRadius        = 8
+        createNewIngredientButton.layer.cornerRadius = 8
+        addIngredientButton.layer.cornerRadius       = 4
+        
+        imagePicker                                  = UIImagePickerController()
         setAllDelegates()
         setPickerAndToolBar()
-        addNewRecipeButton.layer.cornerRadius     = 8
-        addIngredientButton.layer.cornerRadius    = 4
-       
         loadIngredients()
-        
-       
-            
-        
         ingredientNamesAssigned()
-        print(preloadedIngredients.count)
-        
-        
         
     }
     
@@ -83,16 +78,6 @@ class AddVC: UIViewController {
                 pickerArray.append(i.name!)
             }
         }
-    }
-    
-    func loadNewIngredients() {
-        let request: NSFetchRequest<Ingredients> = Ingredients.fetchRequest()
-        do {
-            ingredientArray = try Constants.context.fetch(request)
-        } catch {
-            print("Error fetching data from context: \(error)")
-        }
-        
     }
     
     func loadIngredients() {
@@ -173,6 +158,8 @@ class AddVC: UIViewController {
         tableView.reloadData()
     }
     
+    @IBAction func createNewIngredientTapped(_ sender: UIButton) {
+    }
     
     
     func clearAllTextFields() {
@@ -271,10 +258,7 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
         default:
             break
         }
-        
     }
-
-    
 }
 
 
@@ -282,7 +266,6 @@ extension AddVC:  UIImagePickerControllerDelegate,  UINavigationControllerDelega
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             imageView.image = image
-            
         }
         picker.dismiss(animated: true, completion: nil)
     }
@@ -328,6 +311,8 @@ extension AddVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
+//            Constants.context.
+            save()
             ingredientArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
