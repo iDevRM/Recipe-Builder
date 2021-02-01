@@ -644,14 +644,14 @@
                                 <rect key="frame" x="20" y="200" width="233" height="34"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.77209038129999996" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OU0-eS-9bP">
                                 <rect key="frame" x="20" y="250" width="233" height="34"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.77209038129999996" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="cc1-C7-gwQ">
@@ -681,7 +681,7 @@
                                     <constraint firstAttribute="height" constant="60" id="T3O-rC-IQH"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GOd-cu-WcM">
@@ -693,16 +693,6 @@
                                 </constraints>
                                 <imageReference key="image" image="camera.viewfinder" catalog="system" symbolScale="default"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXX-Sv-Qa9">
-                                <rect key="frame" x="283" y="198" width="90" height="83"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="83" id="5Mt-DT-KLw"/>
-                                    <constraint firstAttribute="width" constant="90" id="Is9-g2-WWJ"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="imageButtonTapped:" destination="0w4-9m-bne" eventType="touchUpInside" id="e0X-i8-Qig"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B7p-or-cYB">
                                 <rect key="frame" x="20" y="452" width="374" height="234"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.77209038129999996" colorSpace="custom" customColorSpace="displayP3"/>
@@ -763,6 +753,9 @@
                                 <state key="normal" title="Done Editing">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="pOl-gC-6XY" eventType="touchUpInside" id="K6i-MQ-dnD"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vP6-UD-eEa"/>
@@ -770,20 +763,16 @@
                         <constraints>
                             <constraint firstItem="p8D-Ji-sEA" firstAttribute="leading" secondItem="vP6-UD-eEa" secondAttribute="leading" constant="20" id="1N9-2E-tRW"/>
                             <constraint firstItem="uRh-1u-dcl" firstAttribute="top" secondItem="B7p-or-cYB" secondAttribute="bottom" constant="16" id="2Na-Gv-mx7"/>
-                            <constraint firstItem="UXX-Sv-Qa9" firstAttribute="leading" secondItem="ZxI-d3-z5E" secondAttribute="trailing" constant="30" id="4Tn-HP-1nc"/>
                             <constraint firstItem="OU0-eS-9bP" firstAttribute="trailing" secondItem="ZxI-d3-z5E" secondAttribute="trailing" id="4yz-vV-YfE"/>
                             <constraint firstItem="ZxI-d3-z5E" firstAttribute="top" secondItem="vP6-UD-eEa" secondAttribute="top" constant="60" id="BdM-qo-dl4"/>
                             <constraint firstItem="B7p-or-cYB" firstAttribute="leading" secondItem="vP6-UD-eEa" secondAttribute="leading" constant="20" id="GsP-Da-Q71"/>
-                            <constraint firstItem="UXX-Sv-Qa9" firstAttribute="top" secondItem="vP6-UD-eEa" secondAttribute="top" constant="58" id="Gwi-AQ-ctv"/>
                             <constraint firstItem="vP6-UD-eEa" firstAttribute="trailing" secondItem="hBF-tq-e7h" secondAttribute="trailing" id="J56-2s-PRg"/>
                             <constraint firstItem="vP6-UD-eEa" firstAttribute="trailing" secondItem="GOd-cu-WcM" secondAttribute="trailing" constant="41" id="KhO-jr-4gg"/>
                             <constraint firstItem="vP6-UD-eEa" firstAttribute="trailing" secondItem="cc1-C7-gwQ" secondAttribute="trailing" constant="20" id="Kol-q4-PgU"/>
                             <constraint firstItem="cc1-C7-gwQ" firstAttribute="top" secondItem="OU0-eS-9bP" secondAttribute="bottom" constant="16" id="Lf5-is-9BW"/>
-                            <constraint firstItem="cc1-C7-gwQ" firstAttribute="top" secondItem="UXX-Sv-Qa9" secondAttribute="bottom" constant="19" id="SfR-Zc-txT"/>
                             <constraint firstItem="GOd-cu-WcM" firstAttribute="top" secondItem="vP6-UD-eEa" secondAttribute="top" constant="54" id="W2a-eW-LMD"/>
                             <constraint firstItem="vP6-UD-eEa" firstAttribute="bottom" secondItem="uRh-1u-dcl" secondAttribute="bottom" constant="100" id="Wxv-G2-Gc6"/>
                             <constraint firstItem="vP6-UD-eEa" firstAttribute="trailing" secondItem="mP4-rR-P8x" secondAttribute="trailing" constant="20" id="Xb5-ls-rc8"/>
-                            <constraint firstItem="vP6-UD-eEa" firstAttribute="trailing" secondItem="UXX-Sv-Qa9" secondAttribute="trailing" constant="41" id="aXZ-LO-jBD"/>
                             <constraint firstItem="p8D-Ji-sEA" firstAttribute="top" secondItem="uRh-1u-dcl" secondAttribute="bottom" constant="16" id="bOZ-PQ-Tw8"/>
                             <constraint firstItem="GOd-cu-WcM" firstAttribute="leading" secondItem="ZxI-d3-z5E" secondAttribute="trailing" constant="30" id="dIK-zT-fbT"/>
                             <constraint firstItem="hBF-tq-e7h" firstAttribute="top" secondItem="Fp7-ik-aJq" secondAttribute="top" id="dVs-Jq-KTc"/>
@@ -809,6 +798,7 @@
                         <outlet property="categoryTextField" destination="uRh-1u-dcl" id="Vta-XU-GST"/>
                         <outlet property="descriptionTextField" destination="cc1-C7-gwQ" id="6wA-Ln-Wal"/>
                         <outlet property="doneEditingButton" destination="p8D-Ji-sEA" id="u3W-cP-yQW"/>
+                        <outlet property="image" destination="GOd-cu-WcM" id="jlk-UJ-Rnt"/>
                         <outlet property="instructionsTextField" destination="mP4-rR-P8x" id="lxU-jf-fkA"/>
                         <outlet property="nameTextField" destination="ZxI-d3-z5E" id="nJC-lG-qb1"/>
                         <outlet property="tableView" destination="B7p-or-cYB" id="vMP-bb-IBQ"/>

@@ -16,6 +16,7 @@ class EditVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var doneEditingButton: UIButton!
+    @IBOutlet weak var image: UIImageView!
     
     var selectedRecipe: Recipe!
     var ingredientList = [Ingredients]()
@@ -30,16 +31,34 @@ class EditVC: UIViewController {
         descriptionTextField.text = selectedRecipe.descript
         instructionsTextField.text = selectedRecipe.instructions
         categoryTextField.text = selectedRecipe.category?.name
+        image.image = (selectedRecipe.image as! UIImage)
+        image.layer.cornerRadius = 10
+        tableView.delegate = self
+        tableView.dataSource = self
+        nameTextField.delegate = self
+        timeTextField.delegate = self
+        descriptionTextField.delegate = self
+        instructionsTextField.delegate = self
+        categoryTextField.delegate = self
+        
         
     }
     
-
+    @IBAction func doneButtonTapped(_ sender: UIButton) {
+        selectedRecipe.name = nameTextField.text
+        selectedRecipe.prepTime = timeTextField.text
+    }
    
 
 }
 
 extension EditVC: UITextFieldDelegate {
+   
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
 extension EditVC: UITableViewDelegate, UITableViewDataSource {
