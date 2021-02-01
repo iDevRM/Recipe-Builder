@@ -709,7 +709,7 @@
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="0.77209038129999996" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="0.77209038129999996" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellList" id="ezL-Xb-fxo" customClass="IngredientListCell" customModule="FoodManChu" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellList" id="ezL-Xb-fxo" customClass="EditCell" customModule="FoodManChu" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ezL-Xb-fxo" id="Jsz-E1-7Cg">
@@ -746,6 +746,10 @@
                                                 <constraint firstItem="cl8-xe-tn7" firstAttribute="leading" secondItem="Jsz-E1-7Cg" secondAttribute="leadingMargin" constant="8" id="ufF-3n-6Sl"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="amountLabel" destination="xNv-oa-Y9h" id="M1N-vt-3tp"/>
+                                            <outlet property="nameLabel" destination="A2K-eW-rGd" id="4Zd-fa-acI"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

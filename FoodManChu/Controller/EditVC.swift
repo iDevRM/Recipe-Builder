@@ -18,7 +18,7 @@ class EditVC: UIViewController {
     @IBOutlet weak var doneEditingButton: UIButton!
     
     var selectedRecipe: Recipe!
-    
+    var ingredientList = [Ingredients]()
     
     
     override func viewDidLoad() {
@@ -48,17 +48,15 @@ extension EditVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "CellList", for: indexPath) as? IngredientListCell {
-            var array = [Ingredients]()
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "CellList", for: indexPath) as? EditCell {
+           
             if let set = selectedRecipe.ingredients as? Set<Ingredients> {
                 for i in set {
-                    array.append(i)
+                    ingredientList.append(i)
                 }
-                
-                cell.configCell(array[indexPath.row
-                ].name!, array[indexPath.row].amount!)
+                cell.configCell(ingredientList[indexPath.row])
             }
-            
+            return cell
         }
         return UITableViewCell()
     }
