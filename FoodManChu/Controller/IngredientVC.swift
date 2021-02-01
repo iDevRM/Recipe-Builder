@@ -19,8 +19,8 @@ class IngredientVC: UIViewController, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addButton.layer.cornerRadius = 8
-        deleteButton.layer.cornerRadius = 8
+        addButton.layer.cornerRadius = 5
+        deleteButton.layer.cornerRadius = 5
         navigationController?.delegate = self
         loadIngredients()
     }
@@ -68,6 +68,7 @@ class IngredientVC: UIViewController, UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if let destVC = viewController as? AddVC {
             destVC.loadIngredients()
+            destVC.pickerArray.removeAll()
             destVC.ingredientNamesAssigned()
             destVC.tableView.reloadData()
         }

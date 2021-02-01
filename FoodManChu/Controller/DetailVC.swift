@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailVC: UIViewController {
+class DetailVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var image             : UIImageView!
     @IBOutlet weak var nameLabel         : UILabel!
     @IBOutlet weak var prepTimeLabel     : UILabel!
@@ -17,11 +17,12 @@ class DetailVC: UIViewController {
     @IBOutlet weak var instructionslLabel: UILabel!
     @IBOutlet weak var categoryLabel     : UILabel!
     
+    
     var selectedRecipe: Recipe?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        image.layer.cornerRadius = 10
         if selectedRecipe != nil {
             setTextForAllLabels(with: selectedRecipe)
         }
@@ -37,7 +38,7 @@ class DetailVC: UIViewController {
         let ingredients = recipe!.ingredients as! Set<Ingredients>
         for ingredient in ingredients {
             if ingredient.name != nil {
-                items += "\(ingredient.name!),"
+                items += "\(ingredient.amount!) \(ingredient.name!),"
             }
         }
         print(items)

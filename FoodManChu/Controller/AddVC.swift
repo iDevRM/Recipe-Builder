@@ -50,6 +50,7 @@ class AddVC: UIViewController {
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if let destVC = viewController as? SearchVC {
+            print("Hello")
             destVC.loadRecipes()
             destVC.tableView.reloadData()
         }
@@ -60,8 +61,8 @@ class AddVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addNewRecipeButton.layer.cornerRadius        = 8
-        createNewIngredientButton.layer.cornerRadius = 8
+        addNewRecipeButton.layer.cornerRadius        = 5
+        createNewIngredientButton.layer.cornerRadius = 5
         addIngredientButton.layer.cornerRadius       = 4
         
         imagePicker                                  = UIImagePickerController()
@@ -131,29 +132,24 @@ class AddVC: UIViewController {
             createRecipe()
             save()
             clearAllTextFields()
+            storedIngredientNames.removeAll()
+            storedIngredientAmounts.removeAll()
             tableView.reloadData()
         }
     }
     
     @IBAction func addIngredientTapped(_ sender: UIButton) {
-        if ingredientAmountTextField.hasText && ingredientNameTextField.hasText {
-            if !pickerArray.contains(ingredientNameTextField.text!) {
-                let newIngredient = Ingredients(context: Constants.context)
-                newIngredient.name = ingredientNameTextField.text!
-                save()
-                storedIngredientNames.append(ingredientNameTextField.text!)
-                storedIngredientAmounts.append(ingredientAmountTextField.text!)
-            } else {
-                storedIngredientNames.append(ingredientNameTextField.text!)
-                storedIngredientAmounts.append(ingredientAmountTextField.text!)
-            }
-            
-            loadIngredients()
-            pickerArray.removeAll()
-            ingredientNamesAssigned()
-            
+        if ingredientAmountTextField.hasText && ingredientNameTextField.hasText && preloadedIngredients.contains(where: { $0.name == "\(ingredientNameTextField.text!)" }) {
+            storedIngredientNames.append(ingredientNameTextField.text!)
+            storedIngredientAmounts.append(ingredientAmountTextField.text!)
+            ingredientNameTextField.layer.borderWidth = 0
             ingredientNameTextField.text = ""
             ingredientAmountTextField.text = ""
+        } else {
+            ingredientNameTextField.text = ""
+            ingredientNameTextField.layer.borderWidth = 2
+            ingredientNameTextField.layer.borderColor = UIColor.systemRed.cgColor
+            ingredientNameTextField.placeholder = "Invalid Ingredient"
         }
         tableView.reloadData()
     }
@@ -183,6 +179,8 @@ class AddVC: UIViewController {
         newRecipe.image        = imageView.image
         for i in storedIngredientNames {
             if let ingredient = preloadedIngredients.first(where: { $0.name == i }) {
+                let index = storedIngredientNames.firstIndex(where: { $0 == i })
+                ingredient.amount = storedIngredientAmounts[index!]
                 ingredientSet.insert(ingredient)
             }
         }
@@ -311,13 +309,10 @@ extension AddVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-//            Constants.context.
-            save()
-            ingredientArray.remove(at: indexPath.row)
+            storedIngredientNames.remove(at: indexPath.row)
+            storedIngredientAmounts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
         }
     }
-    
-    
 }

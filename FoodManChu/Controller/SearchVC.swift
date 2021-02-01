@@ -27,9 +27,6 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
         tableView.dataSource = self
         searchBar.delegate   = self
         
-        
-        
-        
         loadRecipes()
         
     }
