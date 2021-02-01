@@ -47,4 +47,9 @@ class DetailVC: UIViewController, UITextFieldDelegate {
             categoryLabel.text = "Category : \(category)"
         }
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destVC = segue.destination as? EditVC {
+            destVC.selectedRecipe = selectedRecipe
+        }
+    }
 }
