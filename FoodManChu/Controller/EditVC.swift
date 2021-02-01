@@ -27,7 +27,7 @@ class EditVC: UIViewController {
         
         doneEditingButton.layer.cornerRadius = 5
         nameTextField.text = selectedRecipe.name
-        timeTextField.text = "\(String(format: "%0.f", selectedRecipe.prepTime)) min"
+        timeTextField.text = selectedRecipe.prepTime
         descriptionTextField.text = selectedRecipe.descript
         instructionsTextField.text = selectedRecipe.instructions
         categoryTextField.text = selectedRecipe.category?.name
@@ -45,8 +45,12 @@ class EditVC: UIViewController {
     }
     
     @IBAction func doneButtonTapped(_ sender: UIButton) {
-        selectedRecipe.name = nameTextField.text
-        selectedRecipe.prepTime = timeTextField.text
+        selectedRecipe.name = nameTextField.text!
+        selectedRecipe.prepTime = timeTextField.text!
+        selectedRecipe.descript = descriptionTextField.text!
+        selectedRecipe.instructions = instructionsTextField.text!
+        selectedRecipe.category?.name = categoryTextField.text!
+        
     }
    
 
@@ -78,6 +82,10 @@ extension EditVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
     
     

@@ -24,7 +24,7 @@ class SearchTableViewCell: UITableViewCell {
         view.layer.shadowOffset      = CGSize(width: 0.0, height: 2.0)
         view.layer.shadowColor       = #colorLiteral(red: 0.6156238914, green: 0.6157299876, blue: 0.6156099439, alpha: 1)
         topLabel.text                = recipe.name
-        middleLabel.text             = "\(String(format: "%0.f", recipe.prepTime)) min"
+        middleLabel.text             = recipe.prepTime
         bottomLabel.text             = recipe.descript
     }
  

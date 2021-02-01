@@ -654,24 +654,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="cc1-C7-gwQ">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="cc1-C7-gwQ">
                                 <rect key="frame" x="20" y="300" width="374" height="60"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.77209038129999996" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="7tc-cN-7do"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="mP4-rR-P8x">
-                                <rect key="frame" x="20" y="376" width="374" height="60"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.77209038129999996" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="a7O-xs-mPo"/>
-                                </constraints>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uRh-1u-dcl">
@@ -699,46 +689,43 @@
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="0.77209038129999996" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="0.77209038129999996" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellList" id="ezL-Xb-fxo" customClass="EditCell" customModule="FoodManChu" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellList" rowHeight="40" id="ezL-Xb-fxo" customClass="EditCell" customModule="FoodManChu" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ezL-Xb-fxo" id="Jsz-E1-7Cg">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cl8-xe-tn7">
-                                                    <rect key="frame" x="28" y="11.5" width="326" height="21"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LkJ-Nr-8oQ">
+                                                    <rect key="frame" x="20" y="3" width="334" height="34"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNv-oa-Y9h">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="21"/>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WwB-GW-3Ha">
+                                                            <rect key="frame" x="0.0" y="0.0" width="126" height="34"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wC1-e6-90N">
+                                                            <rect key="frame" x="134" y="0.0" width="200" height="34"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="60" id="w9j-Zc-gdO"/>
+                                                                <constraint firstAttribute="width" constant="200" id="2oo-yf-6QO"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2K-eW-rGd">
-                                                            <rect key="frame" x="62" y="0.0" width="264" height="21"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="cl8-xe-tn7" secondAttribute="bottom" constant="0.5" id="6Od-FS-gLg"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="cl8-xe-tn7" secondAttribute="trailing" id="Oi8-vr-FLw"/>
-                                                <constraint firstItem="cl8-xe-tn7" firstAttribute="top" secondItem="Jsz-E1-7Cg" secondAttribute="topMargin" constant="0.5" id="ejC-Z9-PTm"/>
-                                                <constraint firstItem="cl8-xe-tn7" firstAttribute="centerY" secondItem="Jsz-E1-7Cg" secondAttribute="centerY" id="evd-MN-T3I"/>
-                                                <constraint firstItem="cl8-xe-tn7" firstAttribute="leading" secondItem="Jsz-E1-7Cg" secondAttribute="leadingMargin" constant="8" id="ufF-3n-6Sl"/>
+                                                <constraint firstAttribute="bottom" secondItem="LkJ-Nr-8oQ" secondAttribute="bottom" constant="3" id="Fll-Sq-Rod"/>
+                                                <constraint firstItem="LkJ-Nr-8oQ" firstAttribute="top" secondItem="Jsz-E1-7Cg" secondAttribute="top" constant="3" id="GvR-x1-dpe"/>
+                                                <constraint firstItem="LkJ-Nr-8oQ" firstAttribute="leading" secondItem="Jsz-E1-7Cg" secondAttribute="leading" constant="20" id="Xim-BO-Krr"/>
+                                                <constraint firstAttribute="trailing" secondItem="LkJ-Nr-8oQ" secondAttribute="trailing" constant="20" id="zSp-E1-8u5"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="amountLabel" destination="xNv-oa-Y9h" id="M1N-vt-3tp"/>
-                                            <outlet property="nameLabel" destination="A2K-eW-rGd" id="4Zd-fa-acI"/>
+                                            <outlet property="amountTextField" destination="WwB-GW-3Ha" id="7cc-2l-G7R"/>
+                                            <outlet property="nameTextField" destination="wC1-e6-90N" id="wng-Fr-qV9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -757,6 +744,16 @@
                                     <action selector="doneButtonTapped:" destination="pOl-gC-6XY" eventType="touchUpInside" id="K6i-MQ-dnD"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="mP4-rR-P8x">
+                                <rect key="frame" x="20" y="376" width="374" height="60"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.77209038129999996" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="a7O-xs-mPo"/>
+                                </constraints>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vP6-UD-eEa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

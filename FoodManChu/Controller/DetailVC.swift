@@ -32,7 +32,7 @@ class DetailVC: UIViewController, UITextFieldDelegate {
         var items = ""
         image.image = recipe!.image as? UIImage ?? UIImage(named: "Instant-Pot-Spaghetti-Recipe-11-of-4-1024x681")
         nameLabel.text = recipe!.name
-        prepTimeLabel.text = "\(String(format: "%0.f", recipe!.prepTime)) min"
+        prepTimeLabel.text = recipe?.prepTime
         descriptionLabel.text = recipe!.descript
         instructionslLabel.text = recipe!.instructions!
         let ingredients = recipe!.ingredients as! Set<Ingredients>

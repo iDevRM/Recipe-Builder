@@ -175,7 +175,7 @@ class AddVC: UIViewController {
         newRecipe.name         = nameTextField.text!
         newRecipe.descript     = descriptionTextField.text!
         newRecipe.instructions = instructionsTextField.text!
-        newRecipe.prepTime     = Double(timeTextField.text!)!
+        newRecipe.prepTime     = timeTextField.text!
         newRecipe.image        = imageView.image
         for i in storedIngredientNames {
             if let ingredient = preloadedIngredients.first(where: { $0.name == i }) {
