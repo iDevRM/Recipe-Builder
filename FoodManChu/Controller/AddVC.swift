@@ -50,7 +50,6 @@ class AddVC: UIViewController {
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if let destVC = viewController as? SearchVC {
-            print("Hello")
             destVC.loadRecipes()
             destVC.tableView.reloadData()
         }

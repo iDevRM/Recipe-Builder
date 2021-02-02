@@ -22,7 +22,7 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        navigationController?.delegate = self
         tableView.delegate   = self
         tableView.dataSource = self
         searchBar.delegate   = self
@@ -52,11 +52,6 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
         performSegue(withIdentifier: Constants.addSegue, sender: self)
     }
     
-    override func didMove(toParent parent: UIViewController?) {
-        if let destVC = parent as? SearchVC {
-            destVC.tableView.reloadData()
-        }
-    }
     
 }
 
@@ -109,6 +104,8 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
         }
     }
     
+    
+    
 }
     
 
@@ -133,7 +130,7 @@ extension SearchVC {
         } catch {
             print("Error fetching data from context: \(error)")
         }
-        tableView.reloadData()
+        
     }
     
     func removeRecipe(at index: Int) {
@@ -170,10 +167,17 @@ extension SearchVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
             loadRecipes()
-            
+            tableView.reloadData()
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }
         }
+    }
+}
+
+extension SearchVC: UINavigationControllerDelegate {
+    override func didMove(toParent parent: UIViewController?) {
+        loadRecipes()
+        tableView.reloadData()
     }
 }

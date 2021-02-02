@@ -26,7 +26,30 @@ class DetailVC: UIViewController, UITextFieldDelegate {
         if selectedRecipe != nil {
             setTextForAllLabels(with: selectedRecipe)
         }
+        
     }
+    
+    @IBAction func duplicateTapped(_ sender: Any) {
+        if selectedRecipe != nil {
+            let duplicate = Recipe(context: Constants.context)
+            duplicate.name = selectedRecipe!.name!
+            duplicate.prepTime = selectedRecipe!.prepTime!
+            duplicate.descript = selectedRecipe!.descript!
+            duplicate.instructions = selectedRecipe!.instructions!
+            duplicate.image = selectedRecipe!.image!
+            duplicate.category?.name = selectedRecipe!.category!.name!
+            duplicate.ingredients = selectedRecipe!.ingredients
+            
+            do {
+                try Constants.context.save()
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+            navigationController?.popToRootViewController(animated: true)
+        }
+    }
+    
     
     func setTextForAllLabels(with recipe: Recipe?) {
         var items = ""
@@ -41,7 +64,6 @@ class DetailVC: UIViewController, UITextFieldDelegate {
                 items += "\(ingredient.amount!) \(ingredient.name!),"
             }
         }
-        print(items)
         ingredientsLabel.text = items
         if let category = recipe?.category?.name {
             categoryLabel.text = "Category : \(category)"
@@ -53,3 +75,6 @@ class DetailVC: UIViewController, UITextFieldDelegate {
         }
     }
 }
+
+
+

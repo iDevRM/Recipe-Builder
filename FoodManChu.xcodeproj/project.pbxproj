@@ -120,8 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				1DE431B225A8FBA2002C6A2D /* SearchVC.swift */,
-				1DFF360125B8BC5B005E6311 /* DetailVC.swift */,
 				1DFF360425B8D2FA005E6311 /* AddVC.swift */,
+				1DFF360125B8BC5B005E6311 /* DetailVC.swift */,
 				1D31D65725C7555000867575 /* IngredientVC.swift */,
 				1D31D65E25C8714B00867575 /* EditVC.swift */,
 				1D31D65B25C7C14D00867575 /* Main.storyboard */,

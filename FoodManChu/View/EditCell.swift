@@ -8,13 +8,13 @@
 import UIKit
 
 class EditCell: UITableViewCell {
-    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var amountTextField: UITextField!
     
     
     func configCell(_ ingredient: Ingredients) {
         if ingredient.name != nil && ingredient.amount != nil {
-            nameTextField.text = ingredient.name!
+            nameLabel.text = ingredient.name!
             amountTextField.text = ingredient.amount!
         }
     }

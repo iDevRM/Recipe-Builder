@@ -20,6 +20,8 @@ class EditVC: UIViewController {
     
     var selectedRecipe: Recipe!
     var ingredientList = [Ingredients]()
+    var editedIngredient: Ingredients?
+    var set = Set<Ingredients>()
     
     
     override func viewDidLoad() {
@@ -40,8 +42,13 @@ class EditVC: UIViewController {
         descriptionTextField.delegate = self
         instructionsTextField.delegate = self
         categoryTextField.delegate = self
+        navigationController?.delegate = self
         
-        
+        if let set = selectedRecipe.ingredients as? Set<Ingredients> {
+            for i in set {
+                ingredientList.append(i)
+            }
+        }
     }
     
     @IBAction func doneButtonTapped(_ sender: UIButton) {
@@ -50,9 +57,20 @@ class EditVC: UIViewController {
         selectedRecipe.descript = descriptionTextField.text!
         selectedRecipe.instructions = instructionsTextField.text!
         selectedRecipe.category?.name = categoryTextField.text!
-        
+        for i in ingredientList {
+            set.insert(i)
+        }
+        selectedRecipe.ingredients = set as NSSet
+        save()
     }
-   
+    
+    func save() {
+        do {
+            try Constants.context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 
 }
 
@@ -61,32 +79,51 @@ extension EditVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        textField.endEditing(true)
         return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+     
+        if let ingredient = ingredientList.first(where: { $0.amount == textField.text! }) {
+            editedIngredient = ingredient
+                 }
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        editedIngredient?.amount = textField.text!
+        
+        save()
+        
+        tableView.reloadData()
     }
 }
 
 extension EditVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (selectedRecipe.ingredients?.allObjects.count)!
+        return ingredientList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CellList", for: indexPath) as? EditCell {
-           
-            if let set = selectedRecipe.ingredients as? Set<Ingredients> {
-                for i in set {
-                    ingredientList.append(i)
-                }
-                cell.configCell(ingredientList[indexPath.row])
-            }
+            cell.configCell(ingredientList[indexPath.row])
+            cell.amountTextField.delegate = self
             return cell
         }
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+   
+
+    
+}
+
+extension EditVC: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if let destVC = viewController as? DetailVC {
+            destVC.selectedRecipe = selectedRecipe
+            destVC.setTextForAllLabels(with: destVC.selectedRecipe)
+        }
     }
-    
-    
 }

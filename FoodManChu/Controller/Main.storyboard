@@ -603,6 +603,9 @@
                             </barButtonItem>
                             <barButtonItem title="Duplicate" id="cg1-Pz-qgQ">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="duplicateTapped:" destination="T0N-m6-hTs" id="FOw-F8-unm"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -664,7 +667,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uRh-1u-dcl">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uRh-1u-dcl">
                                 <rect key="frame" x="20" y="702" width="374" height="60"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.77209038129999996" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -704,14 +707,15 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wC1-e6-90N">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yeo-8Q-kPt">
                                                             <rect key="frame" x="134" y="0.0" width="200" height="34"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="200" id="2oo-yf-6QO"/>
+                                                                <constraint firstAttribute="width" constant="200" id="TYs-aa-lxc"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
-                                                        </textField>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -725,7 +729,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="amountTextField" destination="WwB-GW-3Ha" id="7cc-2l-G7R"/>
-                                            <outlet property="nameTextField" destination="wC1-e6-90N" id="wng-Fr-qV9"/>
+                                            <outlet property="nameLabel" destination="Yeo-8Q-kPt" id="fjB-4S-CJL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
