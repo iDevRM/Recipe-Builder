@@ -74,6 +74,11 @@ class AddVC: UIViewController {
         newRecipe.instructions = instructionsTextField.text!
         newRecipe.prepTime     = timeTextField.text!
         newRecipe.image        = imageView.image
+        
+        let category           = Categories(context: Constants.context)
+        category.name          = categoryTextField.text!
+        newRecipe.category     = category
+        
         for i in storedIngredientNames {
             if let ingredient = preloadedIngredients.first(where: { $0.name == i }) {
                 let index = storedIngredientNames.firstIndex(where: { $0 == i })
@@ -82,9 +87,6 @@ class AddVC: UIViewController {
             }
         }
         newRecipe.ingredients  = ingredientSet as NSSet
-        let category           = Categories(context: Constants.context)
-        category.name          = categoryTextField.text!
-        newRecipe.category     = category
     }
     
     func clearAllTextFields() {

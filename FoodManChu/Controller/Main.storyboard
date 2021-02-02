@@ -344,7 +344,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="createNewIngredientTapped:" destination="0w4-9m-bne" eventType="touchUpInside" id="Mma-lh-Mst"/>
                                     <segue destination="gWe-8g-4I9" kind="show" identifier="" id="zUh-NK-ezh"/>
                                 </connections>
                             </button>
@@ -503,7 +502,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dan-meyers-F16B5nl7Qk8-unsplash-1" translatesAutoresizingMaskIntoConstraints="NO" id="9ao-5G-Vga">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Untitled design" translatesAutoresizingMaskIntoConstraints="NO" id="9ao-5G-Vga">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category : Meat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ph0-1l-FVv">
@@ -516,7 +515,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YDo-pO-FO7">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YDo-pO-FO7">
                                 <rect key="frame" x="20" y="450.5" width="374" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="50E-Gc-svO"/>
@@ -526,7 +525,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List of ingredients" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kds-dP-5EG">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List of ingredients" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kds-dP-5EG">
                                 <rect key="frame" x="20" y="732.5" width="374" height="129.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -551,7 +550,7 @@
                                     <constraint firstAttribute="width" constant="200" id="Und-vo-xh7"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructions" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S36-50-DIW">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructions" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S36-50-DIW">
                                 <rect key="frame" x="20" y="566.5" width="374" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="TBC-4h-Ubn"/>
@@ -839,10 +838,10 @@
     </scenes>
     <resources>
         <image name="Instant-Pot-Spaghetti-Recipe-11-of-4-1024x681" width="1024" height="681"/>
+        <image name="Untitled design" width="1080" height="1920"/>
         <image name="brooke-lark-wMzx2nBdeng-unsplash" width="4824" height="3229"/>
         <image name="calum-lewis-vA1L1jRTM70-unsplash" width="640" height="960"/>
         <image name="camera.viewfinder" catalog="system" width="128" height="115"/>
-        <image name="dan-meyers-F16B5nl7Qk8-unsplash-1" width="2000" height="1333"/>
         <image name="ingredientsBackground" width="640" height="960"/>
         <image name="ingredientsWallpaper" width="1244" height="1866"/>
         <image name="instant-pot-spaghetti-2a-700x831" width="700" height="831"/>

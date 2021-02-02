@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class EditVC: UIViewController {
     @IBOutlet weak var nameTextField:         UITextField!
@@ -21,7 +22,7 @@ class EditVC: UIViewController {
     var ingredientList =  [Ingredients]()
     var editedIngredient: Ingredients?
     var set =             Set<Ingredients>()
-    
+    var categories =      [Categories]()
     override func viewDidLoad() {
         super.viewDidLoad()
         doneEditingButton.layer.cornerRadius = 5
@@ -65,10 +66,13 @@ class EditVC: UIViewController {
         selectedRecipe.prepTime = timeTextField.text!
         selectedRecipe.descript = descriptionTextField.text!
         selectedRecipe.instructions = instructionsTextField.text!
-        selectedRecipe.category?.name = categoryTextField.text!
+        loadCategories()
+        selectedRecipe.category = categories.first { $0.name == categoryTextField.text! }
+        
         for i in ingredientList {
             set.insert(i)
         }
+        
         selectedRecipe.ingredients = set as NSSet
         save()
         navigationController?.popViewController(animated: true)
@@ -80,6 +84,15 @@ class EditVC: UIViewController {
             try Constants.context.save()
         } catch {
             print(error.localizedDescription)
+        }
+    }
+    
+    func loadCategories() {
+        let request: NSFetchRequest<Categories> = Categories.fetchRequest()
+        do {
+            categories = try Constants.context.fetch(request)
+        } catch {
+            print("Error fetching data from context: \(error)")
         }
     }
     

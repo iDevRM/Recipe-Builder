@@ -60,7 +60,7 @@ class DetailVC: UIViewController, UITextFieldDelegate {
             duplicate.instructions = selectedRecipe!.instructions!
             duplicate.image = selectedRecipe!.image!
             duplicate.category?.name = selectedRecipe!.category!.name!
-            duplicate.ingredients = selectedRecipe!.ingredients
+            duplicate.ingredients = selectedRecipe!.ingredients!
             
             do {
                 try Constants.context.save()
