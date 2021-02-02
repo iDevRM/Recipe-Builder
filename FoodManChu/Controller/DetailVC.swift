@@ -17,7 +17,6 @@ class DetailVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var instructionslLabel: UILabel!
     @IBOutlet weak var categoryLabel     : UILabel!
     
-    
     var selectedRecipe: Recipe?
     
     override func viewDidLoad() {
@@ -26,36 +25,13 @@ class DetailVC: UIViewController, UITextFieldDelegate {
         if selectedRecipe != nil {
             setTextForAllLabels(with: selectedRecipe)
         }
-        
     }
-    
-    @IBAction func duplicateTapped(_ sender: Any) {
-        if selectedRecipe != nil {
-            let duplicate = Recipe(context: Constants.context)
-            duplicate.name = selectedRecipe!.name!
-            duplicate.prepTime = selectedRecipe!.prepTime!
-            duplicate.descript = selectedRecipe!.descript!
-            duplicate.instructions = selectedRecipe!.instructions!
-            duplicate.image = selectedRecipe!.image!
-            duplicate.category?.name = selectedRecipe!.category!.name!
-            duplicate.ingredients = selectedRecipe!.ingredients
-            
-            do {
-                try Constants.context.save()
-            } catch {
-                print(error.localizedDescription)
-            }
-            
-            navigationController?.popToRootViewController(animated: true)
-        }
-    }
-    
     
     func setTextForAllLabels(with recipe: Recipe?) {
         var items = ""
         image.image = recipe!.image as? UIImage ?? UIImage(named: "Instant-Pot-Spaghetti-Recipe-11-of-4-1024x681")
         nameLabel.text = recipe!.name
-        prepTimeLabel.text = recipe?.prepTime
+        prepTimeLabel.text = "\(recipe!.prepTime!) min"
         descriptionLabel.text = recipe!.descript
         instructionslLabel.text = recipe!.instructions!
         let ingredients = recipe!.ingredients as! Set<Ingredients>
@@ -72,6 +48,27 @@ class DetailVC: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destVC = segue.destination as? EditVC {
             destVC.selectedRecipe = selectedRecipe
+        }
+    }
+//MARK: - IBActions
+    @IBAction func duplicateTapped(_ sender: Any) {
+        if selectedRecipe != nil {
+            let duplicate = Recipe(context: Constants.context)
+            duplicate.name = selectedRecipe!.name!
+            duplicate.prepTime = selectedRecipe!.prepTime
+            duplicate.descript = selectedRecipe!.descript!
+            duplicate.instructions = selectedRecipe!.instructions!
+            duplicate.image = selectedRecipe!.image!
+            duplicate.category?.name = selectedRecipe!.category!.name!
+            duplicate.ingredients = selectedRecipe!.ingredients
+            
+            do {
+                try Constants.context.save()
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+            navigationController?.popToRootViewController(animated: true)
         }
     }
 }

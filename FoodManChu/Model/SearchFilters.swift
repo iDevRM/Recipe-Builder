@@ -10,7 +10,7 @@ import Foundation
 enum SearchFilters {
     static let searchByName        = "name"
     static let searchByDescription = "descript"
-    static let searchByIngredients = "ingredients"
+    static let searchByIngredients = "ingredients.name"
     static let searchByTime        = "prepTime"
-    static let searchByCategory    = "category"
+    static let searchByCategory    = "category.name"
 }

@@ -24,16 +24,16 @@ class AddVC: UIViewController {
     @IBOutlet weak var createNewIngredientButton: UIButton!
     
     
-    var imagePicker: UIImagePickerController!
-    let ingredientPicker = UIPickerView()
-    let categoryPicker = UIPickerView()
-    var newRecipe: Recipe?
-    var storedIngredientNames = [String]()
+    var imagePicker:              UIImagePickerController!
+    let ingredientPicker =        UIPickerView()
+    let categoryPicker =          UIPickerView()
+    var newRecipe:                Recipe?
+    var storedIngredientNames =   [String]()
     var storedIngredientAmounts = [String]()
-    var ingredientArray = [Ingredients]()
-    var preloadedIngredients = [Ingredients]()
-    var pickerArray: [String] = []
-    var ingredientSet = Set<Ingredients>()
+    var ingredientArray =         [Ingredients]()
+    var preloadedIngredients =    [Ingredients]()
+    var arrayOfNames:             [String] = []
+    var ingredientSet =           Set<Ingredients>()
     
     var allFieldsHaveInputs: Bool {
         if nameTextField.hasText,
@@ -48,127 +48,25 @@ class AddVC: UIViewController {
         }
     }
     
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        if let destVC = viewController as? SearchVC {
-            destVC.loadRecipes()
-            destVC.tableView.reloadData()
-        }
-    }
- 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         addNewRecipeButton.layer.cornerRadius        = 5
         createNewIngredientButton.layer.cornerRadius = 5
         addIngredientButton.layer.cornerRadius       = 4
-        
         imagePicker                                  = UIImagePickerController()
         setAllDelegates()
         setPickerAndToolBar()
         loadIngredients()
-        ingredientNamesAssigned()
-        
+        createArrayOfNames()
     }
     
-    func ingredientNamesAssigned() {
+    func createArrayOfNames() {
         for i in preloadedIngredients {
             if i.name != nil {
-                pickerArray.append(i.name!)
+                arrayOfNames.append(i.name!)
             }
         }
     }
-    
-    func loadIngredients() {
-        
-        let request: NSFetchRequest<Ingredients> = Ingredients.fetchRequest()
-        do {
-            preloadedIngredients = try Constants.context.fetch(request)
-        } catch {
-            print("Error fetching data from context: \(error)")
-        }
-    }
-    
-    func removeRecipe(at index: Int) {
-        Constants.context.delete(preloadedIngredients[index])
-        preloadedIngredients.remove(at: index)
-        save()
-    }
-    
-    @objc func closePicker() {
-        ingredientNameTextField.resignFirstResponder()
-        categoryTextField.resignFirstResponder()
-    }
-    
-    @IBAction func imageButtonTapped(_ sender: UIButton) {
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func setPickerAndToolBar() {
-        
-        let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.default
-        toolBar.isTranslucent = true
-        toolBar.sizeToFit()
-        
-        let doneButton1 = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(closePicker))
-        toolBar.setItems([doneButton1], animated: false)
-        
-        ingredientNameTextField.inputView = ingredientPicker
-        ingredientNameTextField.inputAccessoryView = toolBar
-        
-        
-        let doneButton2 = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(closePicker))
-        toolBar.setItems([doneButton2], animated: false)
-        
-        categoryTextField.inputView = categoryPicker
-        categoryTextField.inputAccessoryView = toolBar
-    }
-    
-    @IBAction func addNewRecipeTapped(_ sender: UIButton) {
-        if allFieldsHaveInputs {
-            createRecipe()
-            save()
-            clearAllTextFields()
-            storedIngredientNames.removeAll()
-            storedIngredientAmounts.removeAll()
-            tableView.reloadData()
-        }
-    }
-    
-    @IBAction func addIngredientTapped(_ sender: UIButton) {
-        if ingredientAmountTextField.hasText && ingredientNameTextField.hasText && preloadedIngredients.contains(where: { $0.name == "\(ingredientNameTextField.text!)" }) {
-            storedIngredientNames.append(ingredientNameTextField.text!)
-            storedIngredientAmounts.append(ingredientAmountTextField.text!)
-            ingredientNameTextField.layer.borderWidth = 0
-            ingredientNameTextField.text = ""
-            ingredientAmountTextField.text = ""
-        } else {
-            ingredientNameTextField.text = ""
-            ingredientNameTextField.layer.borderWidth = 2
-            ingredientNameTextField.layer.borderColor = UIColor.systemRed.cgColor
-            ingredientNameTextField.placeholder = "Invalid Ingredient"
-        }
-        tableView.reloadData()
-    }
-    
-    @IBAction func createNewIngredientTapped(_ sender: UIButton) {
-    }
-    
-    
-    func clearAllTextFields() {
-        nameTextField.text             = ""
-        timeTextField.text             = ""
-        descriptionTextField.text      = ""
-        instructionsTextField.text     = ""
-        ingredientAmountTextField.text = ""
-        ingredientNameTextField.text   = ""
-        categoryTextField.text         = ""
-        ingredientArray.removeAll()
-        imageView.image = UIImage(systemName: "camera.viewfinder")
-    }
-    
     func createRecipe() {
         let newRecipe          = Recipe(context: Constants.context)
         newRecipe.name         = nameTextField.text!
@@ -189,12 +87,83 @@ class AddVC: UIViewController {
         newRecipe.category     = category
     }
     
+    func clearAllTextFields() {
+        nameTextField.text             = ""
+        timeTextField.text             = ""
+        descriptionTextField.text      = ""
+        instructionsTextField.text     = ""
+        ingredientAmountTextField.text = ""
+        ingredientNameTextField.text   = ""
+        categoryTextField.text         = ""
+        ingredientArray.removeAll()
+        imageView.image = UIImage(systemName: "camera.viewfinder")
+    }
+    
+    //MARK: - IBActions
+    @IBAction func imageButtonTapped(_ sender: UIButton) {
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func addNewRecipeTapped(_ sender: UIButton) {
+        if allFieldsHaveInputs {
+            createRecipe()
+            save()
+            clearAllTextFields()
+            storedIngredientNames.removeAll()
+            storedIngredientAmounts.removeAll()
+            tableView.reloadData()
+        }
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @IBAction func addIngredientTapped(_ sender: UIButton) {
+        if ingredientAmountTextField.hasText && ingredientNameTextField.hasText && preloadedIngredients.contains(where: { $0.name == "\(ingredientNameTextField.text!)" }) {
+            storedIngredientNames.append(ingredientNameTextField.text!)
+            storedIngredientAmounts.append(ingredientAmountTextField.text!)
+            ingredientNameTextField.layer.borderWidth = 0
+            ingredientNameTextField.text = ""
+            ingredientAmountTextField.text = ""
+        } else {
+            ingredientNameTextField.text = ""
+            ingredientNameTextField.layer.borderWidth = 2
+            ingredientNameTextField.layer.borderColor = UIColor.systemRed.cgColor
+            ingredientNameTextField.placeholder = "Invalid Ingredient"
+        }
+        tableView.reloadData()
+    }
+}
+
+//MARK: - Objective C methods
+extension AddVC {
+    @objc func closePicker() {
+        ingredientNameTextField.resignFirstResponder()
+        categoryTextField.resignFirstResponder()
+    }
+}
+
+//MARK: - Data manipulation methods
+extension AddVC {
+    func loadIngredients() {
+        let request: NSFetchRequest<Ingredients> = Ingredients.fetchRequest()
+        do {
+            preloadedIngredients = try Constants.context.fetch(request)
+        } catch {
+            print("Error fetching data from context: \(error)")
+        }
+    }
+    
     func save() {
         do {
             try Constants.context.save()
         } catch {
             print("Error saving context: \(error)")
         }
+    }
+    
+    func removeIngredient(at index: Int) {
+        Constants.context.delete(preloadedIngredients[index])
+        preloadedIngredients.remove(at: index)
+        save()
     }
 }
 
@@ -220,6 +189,24 @@ extension AddVC: UITextFieldDelegate {
 
 //MARK: - Image Picker Delegate and DataSource
 extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func setPickerAndToolBar() {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.sizeToFit()
+        let doneButton1 = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(closePicker))
+        toolBar.setItems([doneButton1], animated: false)
+        ingredientNameTextField.inputView = ingredientPicker
+        ingredientNameTextField.inputAccessoryView = toolBar
+        
+        
+        let doneButton2 = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(closePicker))
+        toolBar.setItems([doneButton2], animated: false)
+        categoryTextField.inputView = categoryPicker
+        categoryTextField.inputAccessoryView = toolBar
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -227,7 +214,7 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
         case ingredientPicker:
-            return pickerArray.count
+            return arrayOfNames.count
         case categoryPicker:
             return Constants.categories.count
         default:
@@ -238,7 +225,7 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
         case ingredientPicker:
-            return pickerArray.sorted { $0 < $1 }[row]
+            return arrayOfNames.sorted { $0 < $1 }[row]
         case categoryPicker:
             return Constants.categories[row]
         default:
@@ -249,7 +236,7 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
         case ingredientPicker:
-            ingredientNameTextField.text = pickerArray.sorted { $0 < $1 }[row]
+            ingredientNameTextField.text = arrayOfNames.sorted { $0 < $1 }[row]
         case categoryPicker:
             categoryTextField.text = Constants.categories[row]
         default:
@@ -258,13 +245,20 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
-
+//MARK: - Image picker delegate methods and navigation controller methods
 extension AddVC:  UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             imageView.image = image
         }
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if let destVC = viewController as? SearchVC {
+            destVC.loadRecipes()
+            destVC.tableView.reloadData()
+        }
     }
 }
 
@@ -286,7 +280,7 @@ extension AddVC {
         navigationController?.delegate     = self
     }
 }
-
+//MARK: - Table view delegates and data source
 extension AddVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return storedIngredientNames.count
@@ -315,3 +309,5 @@ extension AddVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
+
+

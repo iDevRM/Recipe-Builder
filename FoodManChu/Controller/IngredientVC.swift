@@ -15,8 +15,7 @@ class IngredientVC: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var deleteButton: UIButton!
     
     var preloadedIngredients = [Ingredients]()
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addButton.layer.cornerRadius = 5
@@ -25,6 +24,7 @@ class IngredientVC: UIViewController, UINavigationControllerDelegate {
         loadIngredients()
     }
     
+    //MARK: - IBActions
     @IBAction func addButtonTapped(_ sender: UIButton) {
         if textField.hasText && !preloadedIngredients.contains(where: { $0.name == "\(textField.text!)" }) {
             let newIngredient = Ingredients(context: Constants.context)
@@ -38,7 +38,7 @@ class IngredientVC: UIViewController, UINavigationControllerDelegate {
             textField.text = ""
         }
     }
-//   delete AAron AAAron AAAAron 
+    
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         if textField.hasText && preloadedIngredients.contains(where: { $0.name == "\(textField.text!)" }) {
             if let ingredient = preloadedIngredients.first(where: { $0.name == "\(textField.text!)" }) {
@@ -53,9 +53,7 @@ class IngredientVC: UIViewController, UINavigationControllerDelegate {
             }
         }
     }
-    
-    
-    
+    //MARK: - Data manipulation
     func loadIngredients() {
         let request: NSFetchRequest<Ingredients> = Ingredients.fetchRequest()
         do {
@@ -64,14 +62,14 @@ class IngredientVC: UIViewController, UINavigationControllerDelegate {
             print("Error fetching data from context: \(error)")
         }
     }
-    
+    //MARK: - Navigation controller methods
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if let destVC = viewController as? AddVC {
             destVC.loadIngredients()
-            destVC.pickerArray.removeAll()
-            destVC.ingredientNamesAssigned()
+            destVC.arrayOfNames.removeAll()
+            destVC.createArrayOfNames()
             destVC.tableView.reloadData()
         }
     }
-
+    
 }

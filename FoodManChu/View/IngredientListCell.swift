@@ -8,8 +8,6 @@
 import UIKit
 
 class IngredientListCell: UITableViewCell {
-
-    
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -17,5 +15,4 @@ class IngredientListCell: UITableViewCell {
         amountLabel.text = amount
         nameLabel.text   = name
     }
-    
 }

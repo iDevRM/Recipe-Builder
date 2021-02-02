@@ -8,33 +8,47 @@
 import UIKit
 
 class EditVC: UIViewController {
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var timeTextField: UITextField!
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var nameTextField:         UITextField!
+    @IBOutlet weak var timeTextField:         UITextField!
+    @IBOutlet weak var descriptionTextField:  UITextField!
     @IBOutlet weak var instructionsTextField: UITextField!
+    @IBOutlet weak var tableView:             UITableView!
+    @IBOutlet weak var categoryTextField:     UITextField!
+    @IBOutlet weak var doneEditingButton:     UIButton!
+    @IBOutlet weak var image:                 UIImageView!
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var categoryTextField: UITextField!
-    @IBOutlet weak var doneEditingButton: UIButton!
-    @IBOutlet weak var image: UIImageView!
-    
-    var selectedRecipe: Recipe!
-    var ingredientList = [Ingredients]()
+    var selectedRecipe:   Recipe!
+    var ingredientList =  [Ingredients]()
     var editedIngredient: Ingredients?
-    var set = Set<Ingredients>()
-    
+    var set =             Set<Ingredients>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         doneEditingButton.layer.cornerRadius = 5
+        image.layer.cornerRadius = 10
+        setAllDelegates()
+        setAllTextFields()
+        setIngredientList()
+    }
+    
+    func setIngredientList() {
+        if let set = selectedRecipe.ingredients as? Set<Ingredients> {
+            for i in set {
+                ingredientList.append(i)
+            }
+        }
+    }
+    
+    func setAllTextFields() {
         nameTextField.text = selectedRecipe.name
         timeTextField.text = selectedRecipe.prepTime
         descriptionTextField.text = selectedRecipe.descript
         instructionsTextField.text = selectedRecipe.instructions
         categoryTextField.text = selectedRecipe.category?.name
         image.image = (selectedRecipe.image as! UIImage)
-        image.layer.cornerRadius = 10
+    }
+    
+    func setAllDelegates() {
         tableView.delegate = self
         tableView.dataSource = self
         nameTextField.delegate = self
@@ -43,14 +57,9 @@ class EditVC: UIViewController {
         instructionsTextField.delegate = self
         categoryTextField.delegate = self
         navigationController?.delegate = self
-        
-        if let set = selectedRecipe.ingredients as? Set<Ingredients> {
-            for i in set {
-                ingredientList.append(i)
-            }
-        }
     }
     
+    //MARK: - IBActions
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         selectedRecipe.name = nameTextField.text!
         selectedRecipe.prepTime = timeTextField.text!
@@ -62,8 +71,10 @@ class EditVC: UIViewController {
         }
         selectedRecipe.ingredients = set as NSSet
         save()
+        navigationController?.popViewController(animated: true)
     }
     
+    //MARK: - Data manipulation methods
     func save() {
         do {
             try Constants.context.save()
@@ -71,11 +82,10 @@ class EditVC: UIViewController {
             print(error.localizedDescription)
         }
     }
-
+    
 }
-
+//MARK: - Text field delegate methods
 extension EditVC: UITextFieldDelegate {
-   
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -84,22 +94,17 @@ extension EditVC: UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-     
-        if let ingredient = ingredientList.first(where: { $0.amount == textField.text! }) {
-            editedIngredient = ingredient
-                 }
+        let ingedient = ingredientList.first { $0.amount == textField.text! }
+        editedIngredient = ingedient
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         editedIngredient?.amount = textField.text!
-        
-        save()
-        
-        tableView.reloadData()
     }
 }
 
+//MARK: - Table view delegate and data source
 extension EditVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredientList.count
@@ -107,18 +112,15 @@ extension EditVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CellList", for: indexPath) as? EditCell {
-            cell.configCell(ingredientList[indexPath.row])
+            cell.configCell(ingredientList[indexPath.row],indexPath)
             cell.amountTextField.delegate = self
             return cell
         }
         return UITableViewCell()
     }
-    
-   
-
-    
 }
 
+//MARK: - Navigation controller delegate methods
 extension EditVC: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if let destVC = viewController as? DetailVC {
