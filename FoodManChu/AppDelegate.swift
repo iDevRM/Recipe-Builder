@@ -40,20 +40,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefualts = UserDefaults.standard
         
         if userDefualts.bool(forKey: preloadedDataKey) == false {
-            guard let urlPath = Bundle.main.url(forResource: "PropertyList", withExtension: "plist") else { return }
+            guard let urlPath = Bundle.main.url(forResource: "PropertyList", withExtension: "plist"),
+                  let urlPath2 = Bundle.main.url(forResource: "Categories", withExtension: "plist") else { return }
             
             let backgroundContext = persistentContainer.newBackgroundContext()
             Constants.context.automaticallyMergesChangesFromParent = true
             
             backgroundContext.perform {
                 
-                if let arrayOfIngredients = NSArray(contentsOf: urlPath) as? [String] {
+                if let arrayOfIngredients = NSArray(contentsOf: urlPath) as? [String],
+                   let arrayOfCategories = NSArray(contentsOf: urlPath2) as? [String] {
                     
                     do {
                         for item in arrayOfIngredients {
                             let ingredient = Ingredients(context: backgroundContext)
                             ingredient.name = item
                         }
+                        
+                        for item in arrayOfCategories {
+                            let category = Categories(context: backgroundContext)
+                            category.name = item
+                        }
+                        
                         try backgroundContext.save()
                         
                         userDefualts.set(true, forKey: preloadedDataKey)

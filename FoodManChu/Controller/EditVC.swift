@@ -23,6 +23,8 @@ class EditVC: UIViewController {
     var editedIngredient: Ingredients?
     var set =             Set<Ingredients>()
     var categories =      [Categories]()
+    let categoryPicker =  UIPickerView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         doneEditingButton.layer.cornerRadius = 5
@@ -30,6 +32,7 @@ class EditVC: UIViewController {
         setAllDelegates()
         setAllTextFields()
         setIngredientList()
+        createPicker()
     }
     
     func setIngredientList() {
@@ -58,6 +61,8 @@ class EditVC: UIViewController {
         instructionsTextField.delegate = self
         categoryTextField.delegate = self
         navigationController?.delegate = self
+        categoryPicker.delegate = self
+        categoryPicker.dataSource = self
     }
     
     //MARK: - IBActions
@@ -67,12 +72,14 @@ class EditVC: UIViewController {
         selectedRecipe.descript = descriptionTextField.text!
         selectedRecipe.instructions = instructionsTextField.text!
         loadCategories()
-        selectedRecipe.category = categories.first { $0.name == categoryTextField.text! }
+        if let category = categories.first(where: { $0.name == categoryTextField.text! }) {
+            selectedRecipe.category = category
+        }
         
         for i in ingredientList {
             set.insert(i)
         }
-        
+
         selectedRecipe.ingredients = set as NSSet
         save()
         navigationController?.popViewController(animated: true)
@@ -141,4 +148,37 @@ extension EditVC: UINavigationControllerDelegate {
             destVC.setTextForAllLabels(with: destVC.selectedRecipe)
         }
     }
+}
+//MARK: - Category picker
+extension EditVC: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func createPicker() {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.sizeToFit()
+        let doneButton2 = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(closePicker))
+        toolBar.setItems([doneButton2], animated: false)
+        categoryTextField.inputView = categoryPicker
+        categoryTextField.inputAccessoryView = toolBar
+    }
+    
+    @objc func closePicker() {
+        categoryTextField.resignFirstResponder()
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        Constants.categories.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        Constants.categories[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categoryTextField.text = Constants.categories[row]
+    }
+    
 }

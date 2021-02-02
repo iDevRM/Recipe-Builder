@@ -118,6 +118,7 @@ extension SearchVC {
         }
     }
     
+    
     func removeRecipe(at index: Int) {
         Constants.context.delete(recipeArray[index])
         recipeArray.remove(at: index)
@@ -139,8 +140,14 @@ extension SearchVC: UISearchBarDelegate {
             request.predicate = predicate
         }
         
-        loadRecipes()
+        do {
+            recipeArray = try Constants.context.fetch(request)
+        } catch {
+            print("Error fetching data from context: \(error)")
+        }
+       
         tableView.reloadData()
+        searchBar.resignFirstResponder()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

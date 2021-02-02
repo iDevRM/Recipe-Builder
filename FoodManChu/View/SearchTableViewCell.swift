@@ -15,7 +15,7 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var view:        UIView!
 
     func configureCell(_ recipe: Recipe ) {
-        thumbnail.image              = recipe.image as? UIImage ?? UIImage(named: "Instant-Pot-Spaghetti-Recipe-11-of-4-1024x681")
+        thumbnail.image              = recipe.image as? UIImage ?? UIImage(systemName: "camera.viewfinder")
         thumbnail.layer.cornerRadius = 5
         view.layer.cornerRadius      = 10
         view.layer.shadowOpacity     = 0.8
