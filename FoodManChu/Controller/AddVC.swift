@@ -150,7 +150,7 @@ extension AddVC {
         do {
             preloadedIngredients = try Constants.context.fetch(request)
         } catch {
-            print("Error fetching data from context: \(error)")
+            debugPrint("Error fetching data from context: \(error)")
         }
     }
     
@@ -158,7 +158,7 @@ extension AddVC {
         do {
             try Constants.context.save()
         } catch {
-            print("Error saving context: \(error)")
+            debugPrint("Error saving context: \(error)")
         }
     }
     

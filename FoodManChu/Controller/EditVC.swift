@@ -90,7 +90,7 @@ class EditVC: UIViewController {
         do {
             try Constants.context.save()
         } catch {
-            print(error.localizedDescription)
+            debugPrint(error.localizedDescription)
         }
     }
     
@@ -99,7 +99,7 @@ class EditVC: UIViewController {
         do {
             categories = try Constants.context.fetch(request)
         } catch {
-            print("Error fetching data from context: \(error)")
+            debugPrint("Error fetching data from context: \(error)")
         }
     }
     

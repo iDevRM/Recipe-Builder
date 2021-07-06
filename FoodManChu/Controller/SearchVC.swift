@@ -15,9 +15,9 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var addButton:      UIBarButtonItem!
     
-    var recipeArray  =    [Recipe]()
+    var recipeArray     = [Recipe]()
     var ingredientArray = [Ingredients]()
-    var searchFilter =    "name"
+    var searchFilter    = "name"
     
     
     override func viewDidLoad() {
@@ -104,7 +104,7 @@ extension SearchVC {
         do {
             try Constants.context.save()
         } catch {
-            print("Error saving context: \(error)")
+            debugPrint("Error saving context: \(error)")
         }
         tableView.reloadData()
     }
@@ -114,7 +114,7 @@ extension SearchVC {
         do {
             recipeArray = try Constants.context.fetch(request)
         } catch {
-            print("Error fetching data from context: \(error)")
+            debugPrint("Error fetching data from context: \(error)")
         }
     }
     
@@ -124,6 +124,7 @@ extension SearchVC {
         recipeArray.remove(at: index)
         save()
     }
+    
 }
 
 //MARK: - Core Data Search Delegates
@@ -143,11 +144,12 @@ extension SearchVC: UISearchBarDelegate {
         do {
             recipeArray = try Constants.context.fetch(request)
         } catch {
-            print("Error fetching data from context: \(error)")
+            debugPrint("Error fetching data from context: \(error)")
         }
        
         tableView.reloadData()
         searchBar.resignFirstResponder()
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

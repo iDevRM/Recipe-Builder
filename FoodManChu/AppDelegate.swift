@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                         userDefualts.set(true, forKey: preloadedDataKey)
                     } catch {
-                        print(error.localizedDescription)
+                        debugPrint(error.localizedDescription)
                     }
                 }
             }

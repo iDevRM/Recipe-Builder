@@ -65,7 +65,7 @@ class DetailVC: UIViewController, UITextFieldDelegate {
             do {
                 try Constants.context.save()
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
             
             navigationController?.popToRootViewController(animated: true)

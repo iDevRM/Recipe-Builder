@@ -33,7 +33,7 @@ class IngredientVC: UIViewController, UINavigationControllerDelegate {
             do {
                 try Constants.context.save()
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
             textField.text = ""
         }
@@ -47,7 +47,7 @@ class IngredientVC: UIViewController, UINavigationControllerDelegate {
                 do {
                     try Constants.context.save()
                 } catch {
-                    print(error.localizedDescription)
+                    debugPrint(error.localizedDescription)
                 }
                 textField.text = ""
             }
@@ -59,7 +59,7 @@ class IngredientVC: UIViewController, UINavigationControllerDelegate {
         do {
             preloadedIngredients = try Constants.context.fetch(request)
         } catch {
-            print("Error fetching data from context: \(error)")
+            debugPrint("Error fetching data from context: \(error)")
         }
     }
     //MARK: - Navigation controller methods
