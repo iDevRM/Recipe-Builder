@@ -52,24 +52,28 @@ class DetailVC: UIViewController, UITextFieldDelegate {
     }
 //MARK: - IBActions
     @IBAction func duplicateTapped(_ sender: Any) {
-        if selectedRecipe != nil {
-            let duplicate = Recipe(context: Constants.context)
-            duplicate.name = selectedRecipe!.name!
-            duplicate.prepTime = selectedRecipe!.prepTime
-            duplicate.descript = selectedRecipe!.descript!
-            duplicate.instructions = selectedRecipe!.instructions!
-            duplicate.image = selectedRecipe!.image!
-            duplicate.category?.name = selectedRecipe!.category!.name!
-            duplicate.ingredients = selectedRecipe!.ingredients!
-            
-            do {
-                try Constants.context.save()
-            } catch {
-                debugPrint(error.localizedDescription)
-            }
-            
-            navigationController?.popToRootViewController(animated: true)
-        }
+        guard let selectedRecipe = selectedRecipe,
+              let category = selectedRecipe.category,
+              let name = selectedRecipe.name,
+              let descript = selectedRecipe.descript,
+              let prepTime = selectedRecipe.prepTime,
+              let instructions = selectedRecipe.instructions,
+              let image = selectedRecipe.image,
+              let ingredients = selectedRecipe.ingredients,
+              let categoryName = category.name else { return }
+        
+        let duplicate = Recipe(context: Constants.context)
+        duplicate.name = name
+        duplicate.prepTime = prepTime
+        duplicate.descript = descript
+        duplicate.instructions = instructions
+        duplicate.image = image
+        duplicate.category?.name = categoryName
+        duplicate.ingredients = ingredients
+        
+        Constants.save()
+        
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 

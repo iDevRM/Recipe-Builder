@@ -34,14 +34,12 @@ class AddVC: UIViewController {
     var preloadedIngredients =    [Ingredients]()
     var arrayOfNames:             [String] = []
     var ingredientSet =           Set<Ingredients>()
+    var textFieldArray =          [UITextField]()
+    var pickerArray =             [UIPickerView]()
     
     var allFieldsHaveInputs: Bool {
-        if nameTextField.hasText,
-           timeTextField.hasText,
-           descriptionTextField.hasText,
-           instructionsTextField.hasText,
-           categoryTextField.hasText,
-           imageView.image != UIImage(systemName: "camera.viewfinder") {
+        if textFieldArray.filter({ !$0.hasText}).isEmpty &&
+           imageView.image != UIImage(systemName: "photo") {
             return true
         } else {
             return false
@@ -50,6 +48,12 @@ class AddVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pickerArray = [ingredientPicker,categoryPicker,]
+        textFieldArray = [nameTextField,
+                          timeTextField,
+                          descriptionTextField,
+                          instructionsTextField,
+                          categoryTextField]
         addNewRecipeButton.layer.cornerRadius        = 5
         createNewIngredientButton.layer.cornerRadius = 5
         addIngredientButton.layer.cornerRadius       = 4
@@ -61,12 +65,13 @@ class AddVC: UIViewController {
     }
     
     func createArrayOfNames() {
-        for i in preloadedIngredients {
-            if i.name != nil {
-                arrayOfNames.append(i.name!)
+        for ingredient in preloadedIngredients {
+            if let name = ingredient.name {
+                arrayOfNames.append(name)
             }
         }
     }
+    
     func createRecipe() {
         let newRecipe          = Recipe(context: Constants.context)
         newRecipe.name         = nameTextField.text!
@@ -79,9 +84,9 @@ class AddVC: UIViewController {
         category.name          = categoryTextField.text!
         newRecipe.category     = category
         
-        for i in storedIngredientNames {
-            if let ingredient = preloadedIngredients.first(where: { $0.name == i }) {
-                let index = storedIngredientNames.firstIndex(where: { $0 == i })
+        for name in storedIngredientNames {
+            if let ingredient = preloadedIngredients.first(where: { $0.name == name }) {
+                let index = storedIngredientNames.firstIndex(where: { $0 == name })
                 ingredient.amount = storedIngredientAmounts[index!]
                 ingredientSet.insert(ingredient)
             }
@@ -90,15 +95,11 @@ class AddVC: UIViewController {
     }
     
     func clearAllTextFields() {
-        nameTextField.text             = ""
-        timeTextField.text             = ""
-        descriptionTextField.text      = ""
-        instructionsTextField.text     = ""
+        textFieldArray.forEach({ $0.text = ""})
         ingredientAmountTextField.text = ""
         ingredientNameTextField.text   = ""
-        categoryTextField.text         = ""
         ingredientArray.removeAll()
-        imageView.image = UIImage(systemName: "camera.viewfinder")
+        imageView.image = UIImage(systemName: "photo")
     }
     
     //MARK: - IBActions
@@ -109,7 +110,7 @@ class AddVC: UIViewController {
     @IBAction func addNewRecipeTapped(_ sender: UIButton) {
         if allFieldsHaveInputs {
             createRecipe()
-            save()
+            Constants.save()
             clearAllTextFields()
             storedIngredientNames.removeAll()
             storedIngredientAmounts.removeAll()
@@ -154,18 +155,10 @@ extension AddVC {
         }
     }
     
-    func save() {
-        do {
-            try Constants.context.save()
-        } catch {
-            debugPrint("Error saving context: \(error)")
-        }
-    }
-    
     func removeIngredient(at index: Int) {
         Constants.context.delete(preloadedIngredients[index])
         preloadedIngredients.remove(at: index)
-        save()
+        Constants.save()
     }
 }
 
@@ -197,6 +190,7 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
         toolBar.sizeToFit()
+        
         let doneButton1 = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(closePicker))
         toolBar.setItems([doneButton1], animated: false)
         ingredientNameTextField.inputView = ingredientPicker
@@ -229,6 +223,7 @@ extension AddVC: UIPickerViewDelegate, UIPickerViewDataSource {
         case ingredientPicker:
             return arrayOfNames.sorted { $0 < $1 }[row]
         case categoryPicker:
+            guard Constants.categories.indices.contains(row) else { return nil }
             return Constants.categories[row]
         default:
             return nil
@@ -266,28 +261,23 @@ extension AddVC:  UIImagePickerControllerDelegate,  UINavigationControllerDelega
 
 extension AddVC {
     func setAllDelegates() {
-        nameTextField.delegate             = self
+        textFieldArray.forEach {$0.delegate = self}
+        pickerArray.forEach {$0.delegate = self}
+        pickerArray.forEach {$0.dataSource = self}
         imagePicker.delegate               = self
-        timeTextField.delegate             = self
-        descriptionTextField.delegate      = self
         ingredientAmountTextField.delegate = self
-        instructionsTextField.delegate     = self
-        categoryPicker.delegate            = self
-        categoryPicker.dataSource          = self
         ingredientNameTextField.delegate   = self
-        ingredientPicker.delegate          = self
-        ingredientPicker.dataSource        = self
         tableView.delegate                 = self
         tableView.dataSource               = self
         navigationController?.delegate     = self
     }
 }
+
 //MARK: - Table view delegates and data source
 extension AddVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return storedIngredientNames.count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientListCell", for: indexPath) as? IngredientListCell {

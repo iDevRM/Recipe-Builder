@@ -13,9 +13,11 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var middleLabel: UILabel!
     @IBOutlet weak var bottomLabel: UILabel!
     @IBOutlet weak var view:        UIView!
+    
+    static let cellReuseId = "RecipeCell"
 
     func configureCell(_ recipe: Recipe ) {
-        thumbnail.image              = recipe.image as? UIImage ?? UIImage(systemName: "camera.viewfinder")
+        thumbnail.image              = recipe.image as? UIImage ?? UIImage(systemName: "photo")
         thumbnail.layer.cornerRadius = 5
         view.layer.cornerRadius      = 10
         view.layer.shadowOpacity     = 0.8

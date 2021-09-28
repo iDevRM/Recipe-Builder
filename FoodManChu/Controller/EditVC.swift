@@ -81,18 +81,11 @@ class EditVC: UIViewController {
         }
 
         selectedRecipe.ingredients = set as NSSet
-        save()
+        Constants.save()
         navigationController?.popViewController(animated: true)
     }
     
     //MARK: - Data manipulation methods
-    func save() {
-        do {
-            try Constants.context.save()
-        } catch {
-            debugPrint(error.localizedDescription)
-        }
-    }
     
     func loadCategories() {
         let request: NSFetchRequest<Categories> = Categories.fetchRequest()

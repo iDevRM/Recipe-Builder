@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Categories" representedClassName="Categories" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" customClassName="[String]"/>
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="category" inverseEntity="Recipe"/>
@@ -11,7 +11,7 @@
     </entity>
     <entity name="Recipe" representedClassName="Recipe" syncable="YES">
         <attribute name="descript" optional="YES" attributeType="String"/>
-        <attribute name="image" optional="YES" attributeType="Transformable"/>
+        <attribute name="image" optional="YES" attributeType="Transformable" valueTransformerName=""/>
         <attribute name="instructions" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="prepTime" optional="YES" attributeType="String"/>
@@ -21,6 +21,6 @@
     <elements>
         <element name="Categories" positionX="144" positionY="-216" width="128" height="73"/>
         <element name="Ingredients" positionX="160" positionY="192" width="128" height="88"/>
-        <element name="Recipe" positionX="-54" positionY="-9" width="128" height="134"/>
+        <element name="Recipe" positionX="-54" positionY="-9" width="128" height="148"/>
     </elements>
 </model>

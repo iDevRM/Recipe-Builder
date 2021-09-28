@@ -30,11 +30,7 @@ class IngredientVC: UIViewController, UINavigationControllerDelegate {
             let newIngredient = Ingredients(context: Constants.context)
             newIngredient.name = textField.text!
             
-            do {
-                try Constants.context.save()
-            } catch {
-                debugPrint(error.localizedDescription)
-            }
+            Constants.save()
             textField.text = ""
         }
     }
@@ -44,11 +40,8 @@ class IngredientVC: UIViewController, UINavigationControllerDelegate {
             if let ingredient = preloadedIngredients.first(where: { $0.name == "\(textField.text!)" }) {
                 Constants.context.delete(ingredient)
                 
-                do {
-                    try Constants.context.save()
-                } catch {
-                    debugPrint(error.localizedDescription)
-                }
+                Constants.save()
+                
                 textField.text = ""
             }
         }

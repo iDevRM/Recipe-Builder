@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum SearchFilters {
-    static let searchByName        = "name"
-    static let searchByDescription = "descript"
-    static let searchByIngredients = "ingredients.name"
-    static let searchByTime        = "prepTime"
-    static let searchByCategory    = "category.name"
+enum SearchFilters: String {
+    case searchByName = "name"
+    case searchByDescription = "descript"
+    case searchByIngredients = "ingredients.name"
+    case searchByTime = "prepTime"
+    case searchByCategory = "category.name"
 }

@@ -17,7 +17,7 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
     
     var recipeArray     = [Recipe]()
     var ingredientArray = [Ingredients]()
-    var searchFilter    = "name"
+    var searchFilter    = SearchFilters.searchByName.rawValue
     
     
     override func viewDidLoad() {
@@ -41,20 +41,20 @@ class SearchVC: UIViewController, NSFetchedResultsControllerDelegate {
     @IBAction func segmentControlTapped(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            searchFilter = SearchFilters.searchByName
+            searchFilter = SearchFilters.searchByName.rawValue
         case 1:
-            searchFilter = SearchFilters.searchByDescription
+            searchFilter = SearchFilters.searchByDescription.rawValue
         case 2:
-            searchFilter = SearchFilters.searchByIngredients
+            searchFilter = SearchFilters.searchByIngredients.rawValue
         case 4:
-            searchFilter = SearchFilters.searchByCategory
+            searchFilter = SearchFilters.searchByCategory.rawValue
         default:
             break
         }
     }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: Constants.addSegue, sender: self)
+        performSegue(withIdentifier: SegueConstants.addSegue, sender: self)
     }
 }
 
@@ -65,7 +65,7 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseId, for: indexPath) as? SearchTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellReuseId, for: indexPath) as? SearchTableViewCell {
             cell.configureCell(recipeArray[indexPath.row])
             return cell
         }
@@ -76,8 +76,12 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
         return 130
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: Constants.detailSegue, sender: self)
+        performSegue(withIdentifier: SegueConstants.detailSegue, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -89,7 +93,7 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
         if editingStyle == .delete {
             tableView.beginUpdates()
             Constants.context.delete(recipeArray[indexPath.row])
-            save()
+            Constants.save()
             recipeArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
@@ -99,15 +103,6 @@ extension SearchVC: UITableViewDelegate,UITableViewDataSource {
 
 //MARK: - Core Data Manipulation Methods
 extension SearchVC {
-    
-    func save() {
-        do {
-            try Constants.context.save()
-        } catch {
-            debugPrint("Error saving context: \(error)")
-        }
-        tableView.reloadData()
-    }
     
     func loadRecipes() {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
@@ -122,7 +117,7 @@ extension SearchVC {
     func removeRecipe(at index: Int) {
         Constants.context.delete(recipeArray[index])
         recipeArray.remove(at: index)
-        save()
+        Constants.save()
     }
     
 }
@@ -134,7 +129,7 @@ extension SearchVC: UISearchBarDelegate {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         
         if segmentControl.selectedSegmentIndex == 3 {
-            let predicate = NSPredicate(format: "prepTime < %@", searchBar.text!)
+            let predicate = NSPredicate(format: "\(SearchFilters.searchByTime.rawValue) < %@", searchBar.text!)
             request.predicate = predicate
         } else {
             let predicate = NSPredicate(format: "\(searchFilter) CONTAINS[cd] %@", searchBar.text!)
